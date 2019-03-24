@@ -3,13 +3,27 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 
 
 export default class HomeScreen extends Component {
+  static navigationOptions = {
+    title: 'Home',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      alignSelf: 'center', 
+      textAlign:"center",
+      flex:1,
+    },
+  };
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.container}>
         <Text>Home Screen</Text>
+        <Text>Welcome to our app!</Text>
         <Button
           title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')}
+          onPress={() => this.props.navigation.push('Details')}
         />
       </View>
     );
@@ -21,11 +35,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
+    backgroundColor: '#ffff00',
+  }
 });

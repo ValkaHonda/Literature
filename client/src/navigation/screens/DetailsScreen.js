@@ -3,9 +3,21 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 
 
 export default class DetailsScreen extends Component {
+  static navigationOptions = {
+    title: 'Details',
+    headerStyle: {
+      backgroundColor: '#f4511e',
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
+  };
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View style={styles.container}>
+        <Text>Details Screen</Text>
+        <Text>Details Screen</Text>
         <Text>Details Screen</Text>
       </View>
     );
@@ -15,13 +27,7 @@ export default class DetailsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    flexDirection: 'column',
+    backgroundColor: '#ffff00',
   },
 });
