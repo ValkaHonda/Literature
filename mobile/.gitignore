@@ -26,6 +26,8 @@ project.xcworkspace
 #
 build/
 .idea
+.gradle
+!gradle/wrapper/gradle-wrapper.jar
 local.properties
 *.iml
 
