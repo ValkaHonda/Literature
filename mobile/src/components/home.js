@@ -1,21 +1,13 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
-import  Routes  from './src/navigation/routes';
-
+import { StyleSheet, Text, View, Button} from 'react-native';
 
 
 export default class App extends Component {
   render() {
     return (
-      <Routes/>
+      <view>
+        <text>Hello!</text>
+      </view>
     );
   }
 }
@@ -31,10 +23,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     textAlign: 'center',
     margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
   },
 });
