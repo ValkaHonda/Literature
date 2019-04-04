@@ -18,8 +18,13 @@ export default class DetailsScreen extends Component {
       <View style={styles.container}>
         <Text>Details Screen</Text>
         <Button
-          title="Log In"
-          onPress={() => this.props.navigation.push('Author')}
+          title="Authors"
+          onPress={() => this.props.navigation.push('Authors')}
+        />
+
+        <Button
+          title="Tests"
+          onPress={() => this.props.navigation.push('Tests')}
         />
       </View>
     );
@@ -31,5 +36,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#000000',
+    justifyContent: 'space-between',
   },
 });

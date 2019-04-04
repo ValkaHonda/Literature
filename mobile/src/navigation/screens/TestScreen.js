@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 
 export default class AuthorScreen extends Component {
   static navigationOptions = {
-    title: 'Authors',
+    title: 'Tests',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -19,7 +19,7 @@ export default class AuthorScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Authors</Text>
+        <Text>Tests</Text>
       </View>
     );
   }
