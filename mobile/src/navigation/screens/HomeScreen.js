@@ -19,10 +19,9 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Home Screen</Text>
-        <Text>Welcome to our app!</Text>
+        <Text>Typical Log-In Screen</Text>
         <Button
-          title="Go to Details"
+          title="Log In"
           onPress={() => this.props.navigation.push('Details')}
         />
       </View>

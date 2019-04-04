@@ -2,25 +2,24 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 
 
-export default class DetailsScreen extends Component {
+export default class AuthorScreen extends Component {
   static navigationOptions = {
-    title: 'Details',
+    title: 'Author',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
+      alignSelf: 'center', 
+      textAlign:"center",
+      flex:1,
     },
   };
   render() {
     return (
       <View style={styles.container}>
-        <Text>Details Screen</Text>
-        <Button
-          title="Log In"
-          onPress={() => this.props.navigation.push('Author')}
-        />
+        <Text>Authors</Text>
       </View>
     );
   }
@@ -29,7 +28,8 @@ export default class DetailsScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#000000',
-  },
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ffff00',
+  }
 });

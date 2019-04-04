@@ -28,7 +28,7 @@ build/
 .idea
 .gradle
 !gradle/wrapper/gradle-wrapper.jar
-local.properties
+hlocal.properties
 *.iml
 
 # node.js
