@@ -39,6 +39,10 @@ public class HelloWorldController {
     public String welcome(){
         StringBuilder htmlBulider = new StringBuilder();
         htmlBulider.append("<h1>Welcome to Elly and Valio API service.</h1>");
+        htmlBulider.append("<h3>Cats:</h3>");
+        htmlBulider.append("<a href=\"https://thawing-eyrie-26509.herokuapp.com/home\">Visit cats.</a>");
+        htmlBulider.append("<h3>Test DB:</h3>");
+        htmlBulider.append("<a href=\"https://thawing-eyrie-26509.herokuapp.com/testDB\">Test Database</a>");
         return htmlBulider.toString();
     }
 }
