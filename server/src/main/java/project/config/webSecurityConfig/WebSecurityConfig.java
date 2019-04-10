@@ -49,7 +49,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/users/sign-up").permitAll()
                 .antMatchers("/home").permitAll()
                 .antMatchers("/test").permitAll()
-//                .antMatchers("/user/**").permitAll() // remove it
+                .antMatchers("/").permitAll()
+//                .antMatchers("/user/**").permitAll() // sub-directories example
                 .antMatchers("/authenticate").permitAll()
                 .antMatchers("/**").authenticated()
                 .and()

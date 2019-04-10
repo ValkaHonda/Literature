@@ -18,4 +18,14 @@ public class RoleServiceImpl implements RoleService{
     public Role getRoleByName(final String roleName) {
         return this.roleRepository.getRoleByName(roleName);
     }
+
+    @Override
+    public void saveRole(Role role) {
+        roleRepository.saveAndFlush(role);
+    }
+
+    @Override
+    public boolean exists(Integer id) {
+        return roleRepository.exists(id);
+    }
 }

@@ -4,27 +4,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import project.areas.users.entities.Role;
-import project.areas.users.repositories.RoleRepository;
+import project.areas.users.services.RoleService;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 public class HelloWorldController {
-    private final RoleRepository roleRepository;
-    @Autowired
-    public HelloWorldController(final RoleRepository roleRepository){
-        this.roleRepository = roleRepository;
-    }
-    @GetMapping("/test")
-    public String testDB(){
+    private final RoleService roleService;
 
-        if(!roleRepository.exists(1)) {
+    @Autowired
+    public HelloWorldController(final RoleService roleService){
+        this.roleService = roleService;
+    }
+    @GetMapping("/testDB")
+    public String testDB(){
+        if(!roleService.exists(1)) {
             Role role = new Role("ROLE_NORMAL");
-            roleRepository.saveAndFlush(role);
+            roleService.saveRole(role);
         }
-        List<Role> roles = roleRepository.findAllById(1);
-        return roles.get(0).getName();
+        Role role = roleService.getRoleByName("ROLE_NORMAL");
+        return role.getName();
     }
     @GetMapping("/home")
     public List<String> getAnimals(){
@@ -34,5 +34,11 @@ public class HelloWorldController {
         animals.add("Tom");
         animals.add("Tom");
         return animals;
+    }
+    @GetMapping("/")
+    public String welcome(){
+        StringBuilder htmlBulider = new StringBuilder();
+        htmlBulider.append("<h1>Welcome to Elly and Valio API service.</h1>");
+        return htmlBulider.toString();
     }
 }
