@@ -8,6 +8,6 @@ import java.util.Set;
 
 public interface RoleRepository  extends JpaRepository<Role,Integer>{
     Role getRoleByName(String roleName);
-    List<Role> getAll();
+    List<Role> findAllById(final Integer id);
 
 }

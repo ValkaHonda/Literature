@@ -23,8 +23,8 @@ public class HelloWorldController {
             Role role = new Role("ROLE_NORMAL");
             roleRepository.saveAndFlush(role);
         }
-        String roles = roleRepository.getAll().toString();
-        return roles;
+        List<Role> roles = roleRepository.findAllById(1);
+        return roles.get(0).getName();
     }
     @GetMapping("/home")
     public List<String> getAnimals(){
