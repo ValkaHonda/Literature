@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, AppRegistry, TextInput } from 'react-native';
+import LogIn from './../../components/loginComponent.js';
 
 
 export default class HomeScreen extends Component {
@@ -19,7 +20,8 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Typical Log-In Screen</Text>
+        <Text>Typical Log-In Screen.</Text>
+        <LogIn></LogIn>
         <Button
           title="Log In"
           onPress={() => this.props.navigation.push('Details')}
@@ -35,5 +37,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#ffff00',
-  }
+  },
+  login: {
+    backgroundColor: '#ffffff',
+  },
 });

@@ -1,34 +1,30 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, AppRegistry, TextInput } from 'react-native';
 
 
 export default class Login extends Component {
   render() {
     return (
-      <view>
-        <text>Email:</text>
+      <View>
+        <Text>Email:</Text>
         <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={styles.textBox}
         />
-        <text>Password:</text>
+        <Text>Password:</Text>
         <TextInput
-            style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+            style={styles.textBox}
         />
-      </view>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-});
+    textBox: {
+        height: 40, 
+        width: 200,
+        borderColor: 'gray', 
+        borderWidth: 1, 
+        backgroundColor: "#ffffff",
+    },
+  });
