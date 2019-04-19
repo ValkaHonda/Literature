@@ -1,6 +1,15 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button, AppRegistry, TextInput } from 'react-native';
+import { 
+  Alert, 
+  StyleSheet, 
+  Text, 
+  View,
+  Button, 
+  TextInput,
+  AsyncStorage
+} from 'react-native';
 import LogIn from './../../components/loginComponent.js';
+
 
 export default class HomeScreen extends Component {
   url = {
@@ -16,22 +25,30 @@ export default class HomeScreen extends Component {
   };
 
   onPassChange = e => {
-      this.setState({ pass: e.target.value });
+      this.setState({
+         pass: e.target.value,
+      });
   };
 
   sendRequest = () => {
-      fetch(`${this.url.base}`)
+      fetch(`${this.url.base}/authenticate`,{
+        method: 'POST', // or 'PUT'
+        body: JSON.stringify(this.state), // data can be `string` or {object}!
+        headers:{
+          'Content-Type': 'application/json'
+        }
+      }).then((response) => response.json())
       .then((response) => {
-          console.log(response);
-          this.props.navigation.push('Details');
+        AsyncStorage.setItem('token',JSON.stringify(response.token)); // In the next version of React Native this will be depricated
       })
       .catch((error) => {
-          console.log(error);
-          this.props.navigation.push('Tests');
+        Alert.alert('No such user');
       });
   };
-  onLogInButtonPress = () => {
-    this.sendRequest();
+  onLogInButtonPress = async () => {
+    await this.sendRequest();
+    const token = await AsyncStorage.getItem('token'); // In the next version of React Native this will be depricated
+    this.setState({token: token});
   };
   static navigationOptions = {
     title: 'Home',
@@ -53,17 +70,19 @@ export default class HomeScreen extends Component {
         <Text>Email:</Text>
         <TextInput
             style={styles.textBox}
-            onChange={this.onEmailChange}
+            onChangeText={(emailInput) => this.setState({email:emailInput})}
         />
         <Text>Password:</Text>
         <TextInput
             style={styles.textBox}
-            onChange={this.onPassChange}
+            onChangeText={(passInput) => this.setState({pass:passInput})}
+            secureTextEntry={true}
         />
         <Button
           title="Log In"
           onPress={this.onLogInButtonPress}
         />
+        <Text>{this.state.token}</Text>
       </View>
     );
   }
