@@ -27,7 +27,7 @@ export default class HomeScreen extends Component {
 
   onPassChange = e => {
       this.setState({
-         pass: e.target.value,
+        pass: e.target.value,
       });
   };
 
@@ -40,7 +40,7 @@ export default class HomeScreen extends Component {
         }
       }).then((response) => response.json())
       .then((response) => {
-        AsyncStorage.setItem('token',JSON.stringify(response.token)); // In the next version of React Native this will be depricated
+        AsyncStorage.setItem('token',JSON.stringify(response.token)); // In the next version of React Native this will be deprecated
       })
       .catch((error) => {
         Alert.alert('No such user');
@@ -48,7 +48,7 @@ export default class HomeScreen extends Component {
   };
   onLogInButtonPress = async () => {
     await this.sendRequest();
-    const token = await AsyncStorage.getItem('token'); // In the next version of React Native this will be depricated
+    const token = await AsyncStorage.getItem('token'); // In the next version of React Native this will be deprecated
     this.setState({token: token});
     this.props.navigation.push('Details');
   };
@@ -84,7 +84,6 @@ export default class HomeScreen extends Component {
           title="Log In"
           onPress={this.onLogInButtonPress}
         />
-        <Text>{this.state.token}</Text>
       </View>
     );
   }
