@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.areas.users.entities.Role;
 import project.areas.users.models.bidingModels.UserRegisterForm;
+import project.areas.users.models.bidingModels.UsernameBindingModel;
 import project.areas.users.services.RoleService;
 import project.areas.users.services.UserService;
 
@@ -31,4 +32,10 @@ public class UserController {
         this.userService.registerUser(registerForm,role);
         return ResponseEntity.ok("Successful sign-up");
     }
+
+    @GetMapping("/id")
+    public String getIDByUsername(@RequestBody final UsernameBindingModel usernameBindingModel)
+    {
+        System.out.println("Hello, World!");
+        return this.userService.getIDByUsername(usernameBindingModel);}
 }

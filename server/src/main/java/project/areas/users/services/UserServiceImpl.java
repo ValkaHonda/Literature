@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
+import project.areas.users.models.bidingModels.UsernameBindingModel;
 import project.areas.users.repositories.UserRepository;
 
 import java.util.HashSet;
@@ -28,5 +29,11 @@ public class UserServiceImpl implements UserService{
         userEntity.setRoles(new HashSet<>());
         userEntity.getRoles().add(role);
         this.userRepository.saveAndFlush(userEntity);
+    }
+
+    @Override
+    public String getIDByUsername(UsernameBindingModel usernameBindingModel) {
+        User user = this.userRepository.findUserByEmail(usernameBindingModel.getUsername());
+        return user.getId().toString();
     }
 }
