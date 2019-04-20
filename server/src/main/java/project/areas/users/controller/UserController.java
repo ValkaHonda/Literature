@@ -33,7 +33,7 @@ public class UserController {
         return ResponseEntity.ok("Successful sign-up");
     }
 
-    @GetMapping("/id")
+    @PostMapping("/id")
     public String getIDByUsername(@RequestBody final UsernameBindingModel usernameBindingModel)
     {
         System.out.println("Hello, World!");
