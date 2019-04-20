@@ -13,7 +13,8 @@ import LogIn from './../../components/loginComponent.js';
 
 export default class HomeScreen extends Component {
   url = {
-    base: 'https://thawing-eyrie-26509.herokuapp.com'
+    base: 'https://thawing-eyrie-26509.herokuapp.com' // For production.
+    // base: 'localhost:8080' //-> For debuging.
   };
   state = {
     email: '',
