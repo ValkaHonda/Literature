@@ -50,6 +50,7 @@ export default class HomeScreen extends Component {
     await this.sendRequest();
     const token = await AsyncStorage.getItem('token'); // In the next version of React Native this will be depricated
     this.setState({token: token});
+    this.props.navigation.push('Details');
   };
   static navigationOptions = {
     title: 'Home',
