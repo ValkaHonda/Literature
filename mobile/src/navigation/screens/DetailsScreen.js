@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import {Alert, StyleSheet, Text, View, Button} from 'react-native';
+import {StoreGlobal } from '../../../App.js';
 
 
 export default class DetailsScreen extends Component {
@@ -13,6 +14,14 @@ export default class DetailsScreen extends Component {
       fontWeight: 'bold',
     },
   };
+
+  componentWillMount(){
+
+      Alert.alert(StoreGlobal({type: 'get', key: 'id'}));
+    }
+
+
+
   render() {
     return (
       <View style={styles.container}>
