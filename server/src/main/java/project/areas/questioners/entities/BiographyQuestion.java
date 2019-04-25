@@ -15,6 +15,7 @@ public class BiographyQuestion {
     private String wrongAnswer3;
     private Author author;
     private BiographyQuiz biographyQuiz;
+    private AuthorQuiz authorQuiz;
 
     public BiographyQuestion(){ }
 
@@ -89,5 +90,15 @@ public class BiographyQuestion {
 
     public void setBiographyQuiz(BiographyQuiz biographyQuiz) {
         this.biographyQuiz = biographyQuiz;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "author_quizId")
+    public AuthorQuiz getAuthorQuiz() {
+        return authorQuiz;
+    }
+
+    public void setAuthorQuiz(AuthorQuiz authorQuiz) {
+        this.authorQuiz = authorQuiz;
     }
 }

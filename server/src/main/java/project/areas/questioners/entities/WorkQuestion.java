@@ -15,6 +15,7 @@ public class WorkQuestion {
     private String wrongAnswer3;
     private Work work;
     private WorkQuiz workQuiz;
+    private AuthorQuiz authorQuiz;
 
     public WorkQuestion() { }
 
@@ -91,5 +92,15 @@ public class WorkQuestion {
 
     public void setWorkQuiz(WorkQuiz workQuiz) {
         this.workQuiz = workQuiz;
+    }
+
+    @ManyToOne()
+    @JoinColumn(name = "author_quizId")
+    public AuthorQuiz getAuthorQuiz() {
+        return authorQuiz;
+    }
+
+    public void setAuthorQuiz(AuthorQuiz authorQuiz) {
+        this.authorQuiz = authorQuiz;
     }
 }
