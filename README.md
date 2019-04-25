@@ -7,11 +7,11 @@ Crossplatform mobile application for bulgarian literature.
 * Java (Server)
 
 ```
-- Spring MVC
-- Spring Data
-- Spring Security
-- Hibernate
-- JPA
+Spring MVC
+Spring Data
+Spring Security
+Hibernate
+JPA
 ```
 * Postgresql (Database)
 
