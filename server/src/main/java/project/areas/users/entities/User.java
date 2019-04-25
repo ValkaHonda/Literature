@@ -2,10 +2,12 @@ package project.areas.users.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import project.areas.results.entities.AuthorQuizResult;
 
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,6 +17,7 @@ public class User implements UserDetails{
     private String email;
     private String password;
     private Set<Role> roles;
+    private List<AuthorQuizResult> authorQuizResults;
 
     public User(){
 
@@ -65,6 +68,15 @@ public class User implements UserDetails{
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public List<AuthorQuizResult> getAuthorQuizResults() {
+        return authorQuizResults;
+    }
+
+    public void setAuthorQuizResults(List<AuthorQuizResult> authorQuizResults) {
+        this.authorQuizResults = authorQuizResults;
     }
 
     @Transient
