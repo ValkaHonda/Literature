@@ -1,4 +1,4 @@
-package project.areas.author;
+package project.areas.authors.entities;
 
 import javax.persistence.*;
 
