@@ -1,1 +1,30 @@
 # Literature
+
+Crossplatform mobile application for bulgarian literature.
+
+## Used Technologies
+
+* Java (Server)
+
+```
+- Spring MVC
+- Spring Data
+- Spring Security
+- Hibernate
+- JPA
+```
+* Postgresql (Database)
+
+```
+-PG admin III
+```
+
+* JavaScript (client)
+
+```
+React Native
+npm
+React Navigation
+Android
+IOS
+```
