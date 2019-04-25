@@ -1,5 +1,7 @@
 package project.areas.authors.entities;
 
+import project.areas.questioners.entities.BiographyQuestion;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class Author {
     private String biography;
     private List<Motif> motifs;
     private List<Work> works;
+    List<BiographyQuestion> biographyQuestions;
 
     public Author() { }
 
@@ -68,5 +71,14 @@ public class Author {
 
     public void setWorks(List<Work> works) {
         this.works = works;
+    }
+
+    @OneToMany(mappedBy = "author")
+    public List<BiographyQuestion> getBiographyQuestions() {
+        return biographyQuestions;
+    }
+
+    public void setBiographyQuestions(List<BiographyQuestion> biographyQuestions) {
+        this.biographyQuestions = biographyQuestions;
     }
 }
