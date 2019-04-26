@@ -31,6 +31,7 @@ public class Work {
         this.title = title;
     }
 
+    @Lob
     @Column(name = "description")
     public String getDescription() {
         return description;
