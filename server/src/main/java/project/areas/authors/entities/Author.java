@@ -14,7 +14,7 @@ public class Author {
     private String biography;
     private List<Motif> motifs;
     private List<Work> works;
-    List<BiographyQuestion> biographyQuestions;
+    private List<BiographyQuestion> biographyQuestions;
 
     public Author() { }
 
@@ -46,7 +46,7 @@ public class Author {
         this.lastName = lastName;
     }
 
-    @Column(name = "biograhy")
+    @Column(columnDefinition="TEXT", name = "biography")
     public String getBiography() {
         return biography;
     }

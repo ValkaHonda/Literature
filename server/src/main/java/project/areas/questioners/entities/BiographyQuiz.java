@@ -1,6 +1,6 @@
 package project.areas.questioners.entities;
 
-
+import project.areas.results.entities.BiographyQuizResult;
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,6 +9,8 @@ import java.util.List;
 public class BiographyQuiz {
     private Integer id;
     private List<BiographyQuestion> biographyQuestions;
+    private List<BiographyQuizResult> biographyQuizResults;
+
 
     public BiographyQuiz() { }
 
@@ -29,5 +31,14 @@ public class BiographyQuiz {
 
     public void setBiographyQuestions(List<BiographyQuestion> biographyQuestions) {
         this.biographyQuestions = biographyQuestions;
+    }
+
+    @OneToMany(mappedBy = "biographyQuiz")
+    public List<BiographyQuizResult> getBiographyQuizResults() {
+        return biographyQuizResults;
+    }
+
+    public void setBiographyQuizResults(List<BiographyQuizResult> biographyQuizResults) {
+        this.biographyQuizResults = biographyQuizResults;
     }
 }

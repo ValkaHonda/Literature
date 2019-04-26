@@ -3,6 +3,8 @@ package project.areas.users.entities;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import project.areas.results.entities.AuthorQuizResult;
+import project.areas.results.entities.BiographyQuizResult;
+import project.areas.results.entities.WorkQuizResult;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -18,6 +20,8 @@ public class User implements UserDetails{
     private String password;
     private Set<Role> roles;
     private List<AuthorQuizResult> authorQuizResults;
+    private List<BiographyQuizResult> biographyQuizResults;
+    private List<WorkQuizResult> workQuizResults;
 
     public User(){
 
@@ -77,6 +81,24 @@ public class User implements UserDetails{
 
     public void setAuthorQuizResults(List<AuthorQuizResult> authorQuizResults) {
         this.authorQuizResults = authorQuizResults;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public List<BiographyQuizResult> getBiographyQuizResults() {
+        return biographyQuizResults;
+    }
+
+    public void setBiographyQuizResults(List<BiographyQuizResult> biographyQuizResults) {
+        this.biographyQuizResults = biographyQuizResults;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public List<WorkQuizResult> getWorkQuizResults() {
+        return workQuizResults;
+    }
+
+    public void setWorkQuizResults(List<WorkQuizResult> workQuizResults) {
+        this.workQuizResults = workQuizResults;
     }
 
     @Transient
