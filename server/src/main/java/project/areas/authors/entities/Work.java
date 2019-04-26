@@ -50,4 +50,5 @@ public class Work {
     public void setAuthor(Author author) {
         this.author = author;
     }
+    
 }
