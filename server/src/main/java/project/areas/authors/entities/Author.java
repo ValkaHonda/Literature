@@ -15,6 +15,7 @@ public class Author {
     private List<Motif> motifs;
     private List<Work> works;
     private List<BiographyQuestion> biographyQuestions;
+    private String avatarURL;
 
     public Author() { }
 
@@ -80,5 +81,14 @@ public class Author {
 
     public void setBiographyQuestions(List<BiographyQuestion> biographyQuestions) {
         this.biographyQuestions = biographyQuestions;
+    }
+
+    @Column(name = "avatar")
+    public String getAvatarURL() {
+        return avatarURL;
+    }
+
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
     }
 }

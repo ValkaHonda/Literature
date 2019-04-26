@@ -22,6 +22,7 @@ public class User implements UserDetails{
     private List<AuthorQuizResult> authorQuizResults;
     private List<BiographyQuizResult> biographyQuizResults;
     private List<WorkQuizResult> workQuizResults;
+    private String avatarURL;
 
     public User(){
 
@@ -99,6 +100,15 @@ public class User implements UserDetails{
 
     public void setWorkQuizResults(List<WorkQuizResult> workQuizResults) {
         this.workQuizResults = workQuizResults;
+    }
+
+    @Column(name = "avatar")
+    public String getAvatarURL() {
+        return avatarURL;
+    }
+
+    public void setAvatarURL(String avatarURL) {
+        this.avatarURL = avatarURL;
     }
 
     @Transient
