@@ -31,7 +31,7 @@ public class Work {
         this.title = title;
     }
 
-    @Column(columnDefinition="TEXT", name = "description")
+    @Column(name = "description")
     public String getDescription() {
         return description;
     }

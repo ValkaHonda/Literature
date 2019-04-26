@@ -47,7 +47,7 @@ public class Author {
         this.lastName = lastName;
     }
 
-    @Column(columnDefinition="TEXT", name = "biography")
+    @Column(name = "biography")
     public String getBiography() {
         return biography;
     }
