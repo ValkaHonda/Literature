@@ -1,6 +1,6 @@
 package project.areas.authors.entities;
 
-import project.areas.questioners.entities.BiographyQuestion;
+import project.areas.questionnaires.entities.BiographyQuestion;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,4 +1,4 @@
-package project.areas.questioners.entities;
+package project.areas.questionnaires.entities;
 
 import project.areas.results.entities.BiographyQuizResult;
 import javax.persistence.*;

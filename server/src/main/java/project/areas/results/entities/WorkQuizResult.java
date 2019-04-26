@@ -1,6 +1,6 @@
 package project.areas.results.entities;
 
-import project.areas.questioners.entities.WorkQuiz;
+import project.areas.questionnaires.entities.WorkQuiz;
 import project.areas.users.entities.User;
 
 import javax.persistence.*;
