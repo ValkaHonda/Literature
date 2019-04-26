@@ -5,6 +5,7 @@ import project.areas.users.entities.User;
 
 import javax.persistence.*;
 
+
 @Entity
 @Table(name = "biography_quiz_results")
 public class BiographyQuizResult
