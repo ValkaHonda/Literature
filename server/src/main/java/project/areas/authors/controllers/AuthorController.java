@@ -9,7 +9,6 @@ import project.areas.authors.dto.ShowAuthorDTO;
 import project.areas.authors.services.AuthorService;
 
 import java.util.List;
-/*
 @RestController
 @RequestMapping("/authors")
 public class AuthorController {
@@ -30,4 +29,3 @@ public class AuthorController {
         return this.authorService.findAll();
     }
 }
-*/
