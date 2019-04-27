@@ -31,8 +31,9 @@ public class Work {
         this.title = title;
     }
 
-    @Lob
-    @Column(name = "description")
+    /*@Lob
+    @Column(name = "description")*/
+    @org.hibernate.annotations.Type( type = "text" )
     public String getDescription() {
         return description;
     }
@@ -50,5 +51,5 @@ public class Work {
     public void setAuthor(Author author) {
         this.author = author;
     }
-    
+
 }
