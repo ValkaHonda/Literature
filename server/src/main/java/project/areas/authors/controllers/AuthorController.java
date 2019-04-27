@@ -25,7 +25,7 @@ public class AuthorController {
         return this.authorService.findById(authorId);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public List<ShowAuthorDTO> all(){
         return this.authorService.findAll();
     }
