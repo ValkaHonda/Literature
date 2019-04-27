@@ -4,6 +4,7 @@ import project.areas.questionnaires.entities.BiographyQuestion;
 
 import javax.persistence.*;
 import java.util.List;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "authors")
@@ -47,7 +48,7 @@ public class Author {
         this.lastName = lastName;
     }
 
-    @Column(name = "biography")
+    @Type( type = "text")
     public String getBiography() {
         return biography;
     }

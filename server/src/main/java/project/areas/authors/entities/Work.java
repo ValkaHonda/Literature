@@ -1,6 +1,7 @@
 package project.areas.authors.entities;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "works")
@@ -31,9 +32,7 @@ public class Work {
         this.title = title;
     }
 
-    /*@Lob
-    @Column(name = "description")*/
-    @org.hibernate.annotations.Type( type = "text" )
+    @Type( type = "text")
     public String getDescription() {
         return description;
     }
