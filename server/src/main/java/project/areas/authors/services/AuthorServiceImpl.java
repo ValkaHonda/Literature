@@ -35,6 +35,12 @@ public class AuthorServiceImpl implements AuthorService{
         Author author = this.authorRepository.findOne(id);
         return entityToDTO(author);
     }
+
+    @Override
+    public Author findEntityById(Integer id) {
+        return this.authorRepository.findOne(id);
+    }
+
     private ShowAuthorDTO entityToDTO(Author author){
         ShowAuthorDTO newAuthorDTO = new ShowAuthorDTO(
                 author.getFirstName(),

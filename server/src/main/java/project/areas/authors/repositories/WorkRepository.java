@@ -10,4 +10,5 @@ public interface WorkRepository extends JpaRepository<Work,Integer> {
     List<Work> findAllBy();
     Work getWorkById(final Integer id);
     Work findByAuthor(final Author author);
+    List<Work> findAllByAuthor(final Author author);
 }
