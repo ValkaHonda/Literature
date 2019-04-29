@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface BiographyQuizRepository extends JpaRepository<BiographyQuiz,Integer> {
     //List<BiographyQuiz> getAllByBiographyQuestions
+    List<BiographyQuiz> findByBiographyQuestions_id(final Integer biographyQuestionId);
 }

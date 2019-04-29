@@ -12,7 +12,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/author")
 public class BiographyQuizController {
-    @GetMapping("/{authorId}/biography-quiz")
+    /*@GetMapping("/{authorId}/biography-quiz")
     public List<ShowBiographyQuestionDTO> allBiographyQuizByAuthorId(
             @PathVariable("authorId") final Integer authorId){
 
@@ -26,5 +26,5 @@ public class BiographyQuizController {
     public List<ShowBiographyQuizDTO> getQuizQuestions(@PathVariable("quizId") final Integer biographyQuizId){
         WorkQuiz workQuiz = this.workQuizService.getWorkQuizEntityById(quizId);
         return this.workQuestionService.questionsByWorkQuiz(workQuiz);
-    }
+    }*/
 }

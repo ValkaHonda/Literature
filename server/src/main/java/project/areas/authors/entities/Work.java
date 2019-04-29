@@ -15,9 +15,9 @@ public class Work {
     private String description;
     private Author author;
     private List<WorkQuestion> workQuestions;
-    private List<WorkQuiz> workQuizzes;
 
-    public Work() { }
+    public Work() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,7 +38,7 @@ public class Work {
         this.title = title;
     }
 
-    @Type( type = "text")
+    @Type(type = "text")
     public String getDescription() {
         return description;
     }
@@ -64,14 +64,5 @@ public class Work {
 
     public void setWorkQuestions(List<WorkQuestion> workQuestions) {
         this.workQuestions = workQuestions;
-    }
-
-    @OneToMany(mappedBy = "work")
-    public List<WorkQuiz> getWorkQuizzes() {
-        return workQuizzes;
-    }
-
-    public void setWorkQuizzes(List<WorkQuiz> workQuizzes) {
-        this.workQuizzes = workQuizzes;
     }
 }

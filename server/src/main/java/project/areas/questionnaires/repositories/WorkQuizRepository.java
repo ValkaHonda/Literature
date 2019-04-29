@@ -7,5 +7,5 @@ import project.areas.questionnaires.entities.WorkQuiz;
 import java.util.List;
 
 public interface WorkQuizRepository extends JpaRepository<WorkQuiz,Integer> {
-    List<WorkQuiz> findAllByWork(final Work work);
+    List<WorkQuiz> findByWorkQuestions_id(final Integer id);
 }
