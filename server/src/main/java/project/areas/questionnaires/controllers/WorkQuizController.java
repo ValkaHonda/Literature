@@ -31,14 +31,16 @@ public class WorkQuizController {
         this.workQuestionService = workQuestionService;
     }
 
-    @GetMapping("/{workId}/quiz")
-    public List<ShowWorkQuizDTO> allWorkQuizQuestionsByWorkId(
+    @GetMapping("/{workId}/work-quiz")
+    public List<ShowWorkQuizDTO> allWorkQuizByWorkId(
             @PathVariable("workId") final Integer workId){
+
         Work work = this.workService.getWorkById(workId);
+
         return this.workQuizService.getWorkQuizzesByWork(work);
     }
 
-    @GetMapping("/quiz/{quizId}/question")
+    @GetMapping("/work-quiz/{quizId}/question")
     public List<ShowWorkQuestionDTO> getQuizQuestions(@PathVariable("quizId") final Integer quizId){
         WorkQuiz workQuiz = this.workQuizService.getWorkQuizEntityById(quizId);
         return this.workQuestionService.questionsByWorkQuiz(workQuiz);

@@ -13,7 +13,6 @@ public class WorkQuiz {
     private List<WorkQuizResult> workQuizResults;
     private Work work;
 
-
     public WorkQuiz() { }
 
     @Id
