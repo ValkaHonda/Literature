@@ -11,8 +11,6 @@ public class WorkQuiz {
     private Integer id;
     private List<WorkQuestion> workQuestions;
     private List<WorkQuizResult> workQuizResults;
-    private Work work;
-
 
     public WorkQuiz() { }
 
@@ -42,15 +40,5 @@ public class WorkQuiz {
 
     public void setWorkQuizResults(List<WorkQuizResult> workQuizResults) {
         this.workQuizResults = workQuizResults;
-    }
-
-    @ManyToOne()
-    @JoinColumn(name = "workId")
-    public Work getWork() {
-        return work;
-    }
-
-    public void setWork(Work work) {
-        this.work = work;
     }
 }

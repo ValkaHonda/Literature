@@ -2,6 +2,7 @@ package project.areas.questionnaires.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.areas.authors.entities.Work;
 import project.areas.questionnaires.dto.ShowWorkQuestionDTO;
 import project.areas.questionnaires.entities.WorkQuestion;
 import project.areas.questionnaires.entities.WorkQuiz;
@@ -23,6 +24,12 @@ public class WorkQuestionServiceImpl implements WorkQuestionService{
         List<WorkQuestion> workQuestionsEntities = this.workQuestionRepository.findAllByWorkQuiz(workQuiz);
         return entityToDTOList(workQuestionsEntities);
     }
+
+    @Override
+    public List<WorkQuestion> workQuestionsByWork(Work work) {
+        return this.workQuestionRepository.findAllByWork(work);
+    }
+
     private ShowWorkQuestionDTO entityToDTO(final WorkQuestion workQuestion){
         return new ShowWorkQuestionDTO(workQuestion.getId(),workQuestion.getQuestion(),
                 workQuestion.getRightAnswer(),workQuestion.getWrongAnswer1(),workQuestion.getWrongAnswer2(),

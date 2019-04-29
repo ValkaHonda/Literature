@@ -2,6 +2,7 @@ package project.areas.authors.entities;
 
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
+import project.areas.questionnaires.entities.WorkQuestion;
 import project.areas.questionnaires.entities.WorkQuiz;
 
 import java.util.List;
@@ -12,10 +13,11 @@ public class Work {
     private Integer id;
     private String title;
     private String description;
-    List<WorkQuiz> workQuizzes;
     private Author author;
+    private List<WorkQuestion> workQuestions;
 
-    public Work() { }
+    public Work() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +38,7 @@ public class Work {
         this.title = title;
     }
 
-    @Type( type = "text")
+    @Type(type = "text")
     public String getDescription() {
         return description;
     }
@@ -56,11 +58,11 @@ public class Work {
     }
 
     @OneToMany(mappedBy = "work")
-    public List<WorkQuiz> getWorkQuizzes() {
-        return workQuizzes;
+    public List<WorkQuestion> getWorkQuestions() {
+        return workQuestions;
     }
 
-    public void setWorkQuizzes(List<WorkQuiz> workQuizzes) {
-        this.workQuizzes = workQuizzes;
+    public void setWorkQuestions(List<WorkQuestion> workQuestions) {
+        this.workQuestions = workQuestions;
     }
 }

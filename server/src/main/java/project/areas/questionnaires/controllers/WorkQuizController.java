@@ -9,6 +9,7 @@ import project.areas.authors.entities.Work;
 import project.areas.authors.services.WorkService;
 import project.areas.questionnaires.dto.ShowWorkQuestionDTO;
 import project.areas.questionnaires.dto.ShowWorkQuizDTO;
+import project.areas.questionnaires.entities.WorkQuestion;
 import project.areas.questionnaires.entities.WorkQuiz;
 import project.areas.questionnaires.services.WorkQuestionService;
 import project.areas.questionnaires.services.WorkQuizService;
@@ -31,14 +32,15 @@ public class WorkQuizController {
         this.workQuestionService = workQuestionService;
     }
 
-    @GetMapping("/{workId}/quiz")
-    public List<ShowWorkQuizDTO> allWorkQuizQuestionsByWorkId(
+    @GetMapping("/{workId}/work-quiz")
+    public List<ShowWorkQuizDTO> allWorkQuizByWorkId(
             @PathVariable("workId") final Integer workId){
         Work work = this.workService.getWorkById(workId);
-        return this.workQuizService.getWorkQuizzesByWork(work);
+        List<WorkQuestion> workQuestions = this.workQuestionService.workQuestionsByWork(work);
+        return this.workQuizService.getWorkQuizzesByQuestions(workQuestions);
     }
 
-    @GetMapping("/quiz/{quizId}/question")
+    @GetMapping("/work-quiz/{quizId}/question")
     public List<ShowWorkQuestionDTO> getQuizQuestions(@PathVariable("quizId") final Integer quizId){
         WorkQuiz workQuiz = this.workQuizService.getWorkQuizEntityById(quizId);
         return this.workQuestionService.questionsByWorkQuiz(workQuiz);
