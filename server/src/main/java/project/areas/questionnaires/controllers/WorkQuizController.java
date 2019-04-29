@@ -32,12 +32,9 @@ public class WorkQuizController {
         this.workQuestionService = workQuestionService;
     }
 
-    @GetMapping("/{workId}/work-quiz")
-    public List<ShowWorkQuizDTO> allWorkQuizByWorkId(
-            @PathVariable("workId") final Integer workId){
-        Work work = this.workService.getWorkById(workId);
-        List<WorkQuestion> workQuestions = this.workQuestionService.workQuestionsByWork(work);
-        return this.workQuizService.getWorkQuizzesByQuestions(workQuestions);
+    @GetMapping("/work-quiz")
+    public List<ShowWorkQuizDTO> allWorkQuiz(){
+        return this.workQuizService.all();
     }
 
     @GetMapping("/work-quiz/{quizId}/question")

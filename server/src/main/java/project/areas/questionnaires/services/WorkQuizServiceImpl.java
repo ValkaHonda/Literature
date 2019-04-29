@@ -35,6 +35,12 @@ public class WorkQuizServiceImpl implements WorkQuizService{
         return this.entityToDTOList(workQuizEntities);
     }
 
+    @Override
+    public List<ShowWorkQuizDTO> all() {
+        List<WorkQuiz> workQuizEntities = this.workQuizRepository.findAll();
+        return this.entityToDTOList(workQuizEntities);
+    }
+
     private ShowWorkQuizDTO entityToDTO(final WorkQuiz workQuizEntity){
         return new ShowWorkQuizDTO(workQuizEntity.getId());
     }

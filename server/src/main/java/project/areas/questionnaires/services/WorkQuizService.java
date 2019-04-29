@@ -10,4 +10,5 @@ import java.util.List;
 public interface WorkQuizService {
     WorkQuiz getWorkQuizEntityById(final Integer workQuizId);
     List<ShowWorkQuizDTO> getWorkQuizzesByQuestions(final List<WorkQuestion> workQuestions);
+    List<ShowWorkQuizDTO> all();
 }
