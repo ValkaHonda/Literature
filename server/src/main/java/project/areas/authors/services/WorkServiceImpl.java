@@ -29,6 +29,12 @@ public class WorkServiceImpl implements WorkService{
         }
         return workDTOS;
     }
+
+    @Override
+    public Work getWorkById(final Integer workId) {
+        return this.workRepository.findOne(workId);
+    }
+
     private ShowWorkDTO entityToDTO(Work work){
         return new ShowWorkDTO(work.getTitle(),work.getDescription());
     }
