@@ -2,6 +2,9 @@ package project.areas.authors.entities;
 
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
+import project.areas.questionnaires.entities.WorkQuiz;
+
+import java.util.List;
 
 @Entity
 @Table(name = "works")
@@ -9,6 +12,7 @@ public class Work {
     private Integer id;
     private String title;
     private String description;
+    List<WorkQuiz> workQuizzes;
     private Author author;
 
     public Work() { }
@@ -51,4 +55,12 @@ public class Work {
         this.author = author;
     }
 
+    @OneToMany(mappedBy = "work")
+    public List<WorkQuiz> getWorkQuizzes() {
+        return workQuizzes;
+    }
+
+    public void setWorkQuizzes(List<WorkQuiz> workQuizzes) {
+        this.workQuizzes = workQuizzes;
+    }
 }
