@@ -22,18 +22,6 @@ public class WorkQuestionServiceImpl implements WorkQuestionService{
     @Override
     public List<ShowWorkQuestionDTO> questionsByWorkQuiz(final WorkQuiz workQuiz) {
         List<WorkQuestion> workQuestionsEntities;
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
-        System.out.println(workQuiz.getId());
         if (workQuiz == null){
             workQuestionsEntities = null;
         } else {
