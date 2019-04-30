@@ -8,6 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/works")
 public class AuthorQuizController {
     //@GetMapping("/{workId}/work-quiz")
-
    // @GetMapping("/work-quiz/{quizId}/question")
 }
