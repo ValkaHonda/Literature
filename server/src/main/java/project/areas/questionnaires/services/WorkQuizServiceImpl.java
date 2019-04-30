@@ -44,10 +44,10 @@ public class WorkQuizServiceImpl implements WorkQuizService{
     private ShowWorkQuizDTO entityToDTO(final WorkQuiz workQuizEntity){
         return new ShowWorkQuizDTO(workQuizEntity.getId());
     }
-    private List<ShowWorkQuizDTO> entityToDTOList(final List<WorkQuiz> workQuizEtities){
+    private List<ShowWorkQuizDTO> entityToDTOList(final List<WorkQuiz> workQuizEntities){
         List<ShowWorkQuizDTO> showWorkQuizDTOS = new ArrayList<>();
-        for (int i = 0; i < workQuizEtities.size(); i++) {
-            showWorkQuizDTOS.add(entityToDTO(workQuizEtities.get(i)));
+        for (int i = 0; i < workQuizEntities.size(); i++) {
+            showWorkQuizDTOS.add(entityToDTO(workQuizEntities.get(i)));
         }
         return showWorkQuizDTOS;
     }
