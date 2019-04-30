@@ -33,6 +33,12 @@ public class AuthorQuizServiceImpl implements AuthorQuizService{
 
         return this.entityToDTOList(authorQuizEntities);
     }
+
+    @Override
+    public AuthorQuiz getAuthorQuizByID(Integer id) {
+        return this.authorQuizRepository.findOne(id);
+    }
+
     private ShowAuthorQuizDTO entityToDTO(final AuthorQuiz authorQuizEntity)
     {return new ShowAuthorQuizDTO(authorQuizEntity.getId());}
 

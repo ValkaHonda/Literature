@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.areas.authors.entities.Author;
 import project.areas.questionnaires.dto.ShowBiographyQuestionDTO;
+import project.areas.questionnaires.entities.AuthorQuiz;
 import project.areas.questionnaires.entities.BiographyQuestion;
 import project.areas.questionnaires.entities.BiographyQuiz;
 import project.areas.questionnaires.repositories.BiographyQuestionRepository;
@@ -31,6 +32,12 @@ private final BiographyQuestionRepository biographyQuestionRepository;
     @Override
     public List<BiographyQuestion> getBiographyQuestionsByAuthor(Author author) {
         return this.biographyQuestionRepository.findAllByAuthor(author);
+    }
+
+    @Override
+    public List<ShowBiographyQuestionDTO> getBiographyQuestionsByAuthorQuiz(AuthorQuiz authorQuiz) {
+        List<BiographyQuestion> biographyQuestions = this.biographyQuestionRepository.findAllByAuthorQuiz(authorQuiz);
+        return entityToDTOList(biographyQuestions);
     }
 
 

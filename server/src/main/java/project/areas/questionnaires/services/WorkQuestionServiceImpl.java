@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import project.areas.authors.entities.Work;
 import project.areas.questionnaires.dto.ShowWorkQuestionDTO;
+import project.areas.questionnaires.entities.AuthorQuiz;
 import project.areas.questionnaires.entities.WorkQuestion;
 import project.areas.questionnaires.entities.WorkQuiz;
 import project.areas.questionnaires.repositories.WorkQuestionRepository;
@@ -34,6 +35,12 @@ public class WorkQuestionServiceImpl implements WorkQuestionService{
     @Override
     public List<WorkQuestion> workQuestionsByWork(Work work) {
         return this.workQuestionRepository.findAllByWork(work);
+    }
+
+    @Override
+    public List<ShowWorkQuestionDTO> questionsByAuthorQuiz(AuthorQuiz authorQuiz) {
+        List<WorkQuestion> workQuestions = this.workQuestionRepository.findAllByAuthorQuiz(authorQuiz);
+        return entityToDTOList(workQuestions);
     }
 
     private ShowWorkQuestionDTO entityToDTO(final WorkQuestion workQuestion){
