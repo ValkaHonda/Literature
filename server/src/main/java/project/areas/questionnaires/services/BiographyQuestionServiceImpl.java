@@ -2,6 +2,7 @@ package project.areas.questionnaires.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import project.areas.authors.entities.Author;
 import project.areas.questionnaires.dto.ShowBiographyQuestionDTO;
 import project.areas.questionnaires.entities.BiographyQuestion;
 import project.areas.questionnaires.entities.BiographyQuiz;
@@ -14,7 +15,7 @@ import java.util.List;
 public class BiographyQuestionServiceImpl implements BiographyQuestionService
 {
 private final BiographyQuestionRepository biographyQuestionRepository;
-@Autowired
+    @Autowired
     public BiographyQuestionServiceImpl(final BiographyQuestionRepository biographyQuestionRepository) {
         this.biographyQuestionRepository = biographyQuestionRepository;
     }
@@ -25,6 +26,11 @@ private final BiographyQuestionRepository biographyQuestionRepository;
                 .findAllByBiographyQuizOrderByIdAsc(biographyQuiz);
         return entityToDTOList(biographyQuestionEntities);
 
+    }
+
+    @Override
+    public List<BiographyQuestion> getBiographyQuestionsByAuthor(Author author) {
+        return this.biographyQuestionRepository.findAllByAuthor(author);
     }
 
 
