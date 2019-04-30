@@ -23,6 +23,11 @@ public class BiographyQuizServiceImpl implements BiographyQuizService
         return entityToDTOList(biographyQuizEntities);
     }
 
+    @Override
+    public BiographyQuiz getBiographyQuizByID(final Integer biographyQuizID) {
+        return this.biographyQuizRepository.findOne(biographyQuizID);
+    }
+
 
     private ShowBiographyQuizDTO entityToDTO(final BiographyQuiz biographyQuizEntity){
         return new ShowBiographyQuizDTO(biographyQuizEntity.getId());
