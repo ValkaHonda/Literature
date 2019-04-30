@@ -22,7 +22,7 @@ private final BiographyQuestionRepository biographyQuestionRepository;
     @Override
     public List<ShowBiographyQuestionDTO> getQuestionsByBiographyQuiz(BiographyQuiz biographyQuiz) {
         List<BiographyQuestion> biographyQuestionEntities = this.biographyQuestionRepository
-                .findAllByBiographyQuiz(biographyQuiz);
+                .findAllByBiographyQuizOrderByIdAsc(biographyQuiz);
         return entityToDTOList(biographyQuestionEntities);
 
     }
