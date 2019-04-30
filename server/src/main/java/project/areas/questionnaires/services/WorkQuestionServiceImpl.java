@@ -23,7 +23,8 @@ public class WorkQuestionServiceImpl implements WorkQuestionService{
     public List<ShowWorkQuestionDTO> questionsByWorkQuiz(final WorkQuiz workQuiz) {
         List<WorkQuestion> workQuestionsEntities;
         if (workQuiz == null){
-            workQuestionsEntities = null;
+            List<ShowWorkQuestionDTO> emptyList = new ArrayList<>();
+            return emptyList;
         } else {
             workQuestionsEntities = this.workQuestionRepository.findAllByWorkQuiz(workQuiz);
         }
