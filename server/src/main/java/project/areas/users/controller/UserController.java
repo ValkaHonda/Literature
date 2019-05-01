@@ -2,6 +2,7 @@ package project.areas.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import project.areas.results.dto.ShowWorkResultDTO;
 import project.areas.users.entities.Role;
@@ -43,9 +44,12 @@ public class UserController {
         return this.userService.getIDByUsername(usernameBindingModel);}
 
     @GetMapping("/work-result")
-    public String getUserWorkQuizResults(Principal principal)
+    public String getUserWorkQuizResults(Authentication authentication, Principal principal)
     {
-        return principal.getName();
+        System.out.println(authentication.getName());
+        System.out.println("-----------------");
+        System.out.println(principal.getName());
+        return authentication.getName()+"$"+principal.getName();
     }
 
 }
