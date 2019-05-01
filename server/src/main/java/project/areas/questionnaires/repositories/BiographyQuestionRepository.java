@@ -11,6 +11,7 @@ import java.util.List;
 public interface BiographyQuestionRepository extends JpaRepository<BiographyQuestion,Integer> {
     List<BiographyQuestion> findAllByBiographyQuiz(final BiographyQuiz biographyQuiz);
     List<BiographyQuestion> findAllByBiographyQuizOrderByIdAsc(final BiographyQuiz biographyQuiz);
-    List<BiographyQuestion> findAllByAuthor(final Author author);
-    List<BiographyQuestion> findAllByAuthorQuiz(final AuthorQuiz authorQuiz);
+    List<BiographyQuestion> findAllByAuthorOrderByIdAsc(final Author author);
+    List<BiographyQuestion> findAllByAuthorQuizOrderByIdAsc(final AuthorQuiz authorQuiz);
+    //findAllByAuthorQuizOrderByIdAsc(final AuthorQuiz authorQuiz);
 }

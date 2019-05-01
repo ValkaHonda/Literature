@@ -31,12 +31,12 @@ private final BiographyQuestionRepository biographyQuestionRepository;
 
     @Override
     public List<BiographyQuestion> getBiographyQuestionsByAuthor(Author author) {
-        return this.biographyQuestionRepository.findAllByAuthor(author);
+        return this.biographyQuestionRepository.findAllByAuthorOrderByIdAsc(author);
     }
 
     @Override
     public List<ShowBiographyQuestionDTO> getBiographyQuestionsByAuthorQuiz(AuthorQuiz authorQuiz) {
-        List<BiographyQuestion> biographyQuestions = this.biographyQuestionRepository.findAllByAuthorQuiz(authorQuiz);
+        List<BiographyQuestion> biographyQuestions = this.biographyQuestionRepository.findAllByAuthorQuizOrderByIdAsc(authorQuiz);
         return entityToDTOList(biographyQuestions);
     }
 

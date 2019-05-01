@@ -26,7 +26,7 @@ public class AuthorQuizServiceImpl implements AuthorQuizService{
         Set<AuthorQuiz> authorQuizzes = new HashSet<>();
         for (int i = 0; i < biographyQuestions.size(); i++) {
             Integer currentBiographyId = biographyQuestions.get(i).getId();
-            authorQuizzes.add(this.authorQuizRepository.findByBiographyQuestions_id(currentBiographyId));
+            authorQuizzes.add(this.authorQuizRepository.findByBiographyQuestions_idOrderByIdAsc(currentBiographyId));
         }
         List<AuthorQuiz> authorQuizEntities = new ArrayList<>(authorQuizzes);
 
