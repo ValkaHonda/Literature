@@ -9,6 +9,7 @@ import project.areas.authors.dto.ShowWorkDTO;
 import project.areas.authors.entities.Author;
 import project.areas.authors.services.AuthorService;
 import project.areas.authors.services.WorkService;
+import project.areas.results.dto.ShowWorkResultDTO;
 
 import java.util.List;
 
