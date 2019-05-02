@@ -1,26 +1,11 @@
 import React, {Component} from 'react';
-import {StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
+import {AppRegistry, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
+
 
 
 authors = [
   {firstName: "Иван", lastName: "Вазов", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274310/literature/Ivan-Vazov_o6aedz.jpg"},
   {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"}
 ]; 
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -54,11 +39,16 @@ export default class AuthorScreen extends React.Component {
       return <View style={[styles.item, styles.itemInvisible]} />;
     }
     return (
+    <TouchableOpacity onPress={() => Alert.alert(item.firstName+" "+item.lastName)}>
       <Image
         key={index}
         style = {{width: 100, height: 100}}
-        source={{uri: item.URL}}            
+        source={{uri: item.URL}}    
+        onPress={() => {
+          Alert.alert('You tapped the button!');
+        }}
       />
+      </TouchableOpacity>
     );
   };
 
