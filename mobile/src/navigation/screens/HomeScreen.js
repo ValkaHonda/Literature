@@ -75,8 +75,13 @@ componentDidMount(){
         }
       }).then((response) => response.json())
       .then((response) => {
+        console.log(JSON.stringify(response.token));
+        console.log(JSON.stringify(response.token));
+        console.log(JSON.stringify(response.token));
+        console.log(JSON.stringify(response.token));
+        console.log("Hello, World!");
         this.setState({ token: response.token });
-      }).then(
+      }).catch((error) => console.log("Invalid user!")).then(
         () => {
           fetch(`${this.url.base}/users/id`,{
             method: 'POST', // or 'PUT'
@@ -105,7 +110,7 @@ componentDidMount(){
               this.props.navigation.push('Details');
           })
           .catch((error) => {
-            Alert.alert("ID error");
+            Alert.alert("Няма такъв потребител!");
           });
       }
 
@@ -118,7 +123,7 @@ componentDidMount(){
     await this.sendRequest();
   };
   static navigationOptions = {
-    title: 'Home',
+    title: 'Българска литература',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -133,20 +138,19 @@ componentDidMount(){
   render() {
     return (
       <View style={styles.container}>
-        <Text>Typical Log-In Screen</Text>
-        <Text>Email:</Text>
+        <Text>Потребителско име:</Text>
         <TextInput
             style={styles.textBox}
             onChangeText={(emailInput) => this.setState({email:emailInput})}
         />
-        <Text>Password:</Text>
+        <Text>Парола:</Text>
         <TextInput
             style={styles.textBox}
             onChangeText={(passInput) => this.setState({pass:passInput})}
             secureTextEntry={true}
         />
         <Button
-          title="Log In"
+          title="Вход"
           onPress={this.onLogInButtonPress}
         />
       </View>

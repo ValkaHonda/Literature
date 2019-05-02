@@ -5,7 +5,7 @@ import {StoreGlobal } from '../../../App.js';
 
 export default class DetailsScreen extends Component {
   static navigationOptions = {
-    title: 'Details',
+    title: 'Изход',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -16,8 +16,6 @@ export default class DetailsScreen extends Component {
   };
 
   componentWillMount(){
-
-      Alert.alert(StoreGlobal({type: 'get', key: 'id'}));
     }
 
 
@@ -27,13 +25,23 @@ export default class DetailsScreen extends Component {
       <View style={styles.container}>
         <Text>Details Screen</Text>
         <Button
-          title="Authors"
+          title="Автори"
           onPress={() => this.props.navigation.push('Authors')}
         />
 
         <Button
-          title="Tests"
+          title="Тестове"
           onPress={() => this.props.navigation.push('Tests')}
+        />
+
+        <Button
+          title="Статистики"
+          onPress={() => this.props.navigation.push('Statistics')}
+        />
+
+        <Button
+          title="Ранглисти"
+          onPress={() => this.props.navigation.push('RangLists')}
         />
       </View>
     );
