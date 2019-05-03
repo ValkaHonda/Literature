@@ -8,6 +8,8 @@ import TestScreen from './screens/TestScreen';
 import StatisticsScreen from './screens/StatisticsScreen';
 import RangListScreen from './screens/RangListScreen';
 import AuthorScreen from './screens/AuthorScreen';
+import WorksScreen from './screens/WorksScreen';
+import AnalysisScreen from './screens/AnalysisScreen';
 
 const RootStack = createStackNavigator(
   {
@@ -17,7 +19,9 @@ const RootStack = createStackNavigator(
     Tests: TestScreen,
     Statistics: StatisticsScreen,
     RangLists: RangListScreen,
-    Author: AuthorScreen
+    Author: AuthorScreen,
+    Works: WorksScreen,
+    Analysis: AnalysisScreen
   },
   {
     initialRouteName: 'Home',

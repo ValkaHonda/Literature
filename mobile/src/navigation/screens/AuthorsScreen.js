@@ -40,7 +40,11 @@ export default class AuthorScreen extends React.Component {
     }
     return (
     <TouchableOpacity onPress={() => {
-      this.props.navigation.push('Author');
+      this.props.navigation.push('Author',{
+        firstName: item.firstName, 
+        lastName: item.lastName, 
+        URL: item.URL}
+      );
       //Alert.alert(item.firstName+" "+item.lastName);
 
       }}>
