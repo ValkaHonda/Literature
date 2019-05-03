@@ -35,9 +35,18 @@ export default class AuthorScreen extends Component {
         <Text>{firstName}</Text>
         <Text>{lastName}</Text>
         <Button
+          title="Биография"
+          onPress={() => this.props.navigation.push('Biography')}
+        />
+        <Button
           title="Творби"
           onPress={() => this.props.navigation.push('Works')}
         />
+        <Button
+          title="Мотиви"
+          onPress={() => this.props.navigation.push('Motifs')}
+        />
+
       </View>
     );
   }

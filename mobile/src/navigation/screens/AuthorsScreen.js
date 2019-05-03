@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {AppRegistry, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
 
 
-
 authors = [
   {firstName: "Иван", lastName: "Вазов", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274310/literature/Ivan-Vazov_o6aedz.jpg"},
   {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},

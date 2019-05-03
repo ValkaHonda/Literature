@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 
 
-export default class RangListScreen extends Component {
+export default class WorkStatisticsScreen extends Component {
   static navigationOptions = {
-    title: 'Ранглисти',
+    title: 'Статистики върху творби',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -19,7 +19,7 @@ export default class RangListScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Ранглисти</Text>
+        <Text>Статистики върху творби</Text>
       </View>
     );
   }

@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button} from 'react-native';
 
 
-export default class AuthorScreen extends Component {
+export default class AuthorRangListScreen extends Component {
   static navigationOptions = {
-    title: 'Tests',
+    title: 'Ранглист върху автори',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -19,7 +19,7 @@ export default class AuthorScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Tests</Text>
+        <Text>Ранглист върху автори</Text>
       </View>
     );
   }

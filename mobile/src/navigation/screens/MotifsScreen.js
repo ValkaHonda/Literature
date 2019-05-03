@@ -6,9 +6,9 @@ import {getUserInfo} from '../../services/HTTPService';
 
 
 
-export default class AnalysisScreen extends Component {
+export default class MotifsScreen extends Component {
   static navigationOptions = {
-    title: 'Анализ',
+    title: 'Мотиви',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -18,11 +18,6 @@ export default class AnalysisScreen extends Component {
     },
   };
 
-  componentWillMount(){
-    getUserInfo("blah")
-    .then((res)=> this.setState(res))
-    .catch((err)=>console.log('error'));
-    }
 
 
 
@@ -30,8 +25,8 @@ export default class AnalysisScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Анализ на творбата</Text>
-        <Text>{JSON.stringify(this.state)}</Text>
+        <Text>Мотиви на автора</Text>
+        
         
       </View>
     );

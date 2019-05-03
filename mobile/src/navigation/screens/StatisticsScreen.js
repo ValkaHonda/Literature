@@ -19,7 +19,19 @@ export default class StatisticsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Статистики</Text>
+        <Text>Всички статистики</Text>
+        <Button
+          title="Статистики върху биографии"
+          onPress={() => this.props.navigation.push('BiographyStatistics')}
+        />
+        <Button
+          title="Статистики върху творби"
+          onPress={() => this.props.navigation.push('WorkStatistics')}
+        />
+        <Button
+          title="Статистики върху автори"
+          onPress={() => this.props.navigation.push('AuthorStatistics')}
+        />
       </View>
     );
   }
