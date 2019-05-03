@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#000000',
+    backgroundColor: '#ffff00',
     justifyContent: 'space-between',
   },
 });
