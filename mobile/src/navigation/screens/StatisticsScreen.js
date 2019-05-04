@@ -21,15 +21,15 @@ export default class StatisticsScreen extends Component {
       <View style={styles.container}>
         <Text>Всички статистики</Text>
         <Button
-          title="Статистики върху биографии"
+          title="Статистика върху биографии"
           onPress={() => this.props.navigation.push('BiographyStatistics')}
         />
         <Button
-          title="Статистики върху творби"
+          title="Статистика върху творби"
           onPress={() => this.props.navigation.push('WorkStatistics')}
         />
         <Button
-          title="Статистики върху автори"
+          title="Статистика върху автори"
           onPress={() => this.props.navigation.push('AuthorStatistics')}
         />
       </View>

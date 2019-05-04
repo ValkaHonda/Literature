@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 
 export default class BiographyStatisticsScreen extends Component {
   static navigationOptions = {
-    title: 'Статистики върху биографии',
+    title: 'Статистика върху биографии',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -19,7 +19,7 @@ export default class BiographyStatisticsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Статистики върху биографии</Text>
+        <Text>Статистика върху биографии</Text>
       </View>
     );
   }

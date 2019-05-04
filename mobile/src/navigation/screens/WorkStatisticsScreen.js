@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button} from 'react-native';
 
 export default class WorkStatisticsScreen extends Component {
   static navigationOptions = {
-    title: 'Статистики върху творби',
+    title: 'Статистика върху творби',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -19,7 +19,7 @@ export default class WorkStatisticsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Статистики върху творби</Text>
+        <Text>Статистика върху творби</Text>
       </View>
     );
   }
