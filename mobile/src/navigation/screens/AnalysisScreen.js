@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View, Button} from 'react-native';
+import {Alert, StyleSheet, Text, View, Button, ScrollView} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getUserInfo} from '../../services/HTTPService';
 
@@ -18,11 +18,18 @@ export default class AnalysisScreen extends Component {
     },
   };
 
-  componentWillMount(){
-    getUserInfo("blah")
-    .then((res)=> this.setState(res))
-    .catch((err)=>console.log('error'));
-    }
+  constructor(props){
+    super(props);
+    const { navigation } = this.props;
+    const title = navigation.getParam('title', 'NO-TITLE');
+    const description = navigation.getParam('description', 'NO-DESCRIPTION');
+    this.state = {
+      title: title,
+      description: description
+    };
+  }
+
+
 
 
 
@@ -30,9 +37,10 @@ export default class AnalysisScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Анализ на творбата</Text>
-        <Text>{JSON.stringify(this.state)}</Text>
-        
+        <Text>{this.state.title.toString()}</Text>
+        <ScrollView>
+          <Text>{this.state.description.toString()}</Text>
+        </ScrollView>
       </View>
     );
   }

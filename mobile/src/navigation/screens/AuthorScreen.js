@@ -14,33 +14,49 @@ export default class AuthorScreen extends Component {
       fontWeight: 'bold',
     },
   };
+  constructor(props){
+    super(props);
+    const { navigation } = this.props;
+    const key = navigation.getParam('key', 'NO-ID'); 
+    const URL = navigation.getParam('URL', 'NO-URL');
+    console.log("URL:------------ "+URL);
+    
+    const firstName = navigation.getParam('firstName', 'some default value');
+    const lastName = navigation.getParam('lastName', 'some default value');
+    this.state = {
+      key: key,
+      URL: URL,
+      firstName: firstName,
+      lastName: lastName
+    }; 
+  }
+
 
   componentWillMount(){
     }
 
     
   render() {
-    const { navigation } = this.props;
-    const URL = navigation.getParam('URL', 'NO-ID');
-    const firstName = navigation.getParam('firstName', 'some default value');
-    const lastName = navigation.getParam('lastName', 'some default value');
-
+    
     return (
       <View style={styles.container}>
       
         <Image
         style = {{width: 100, height: 100}}
-        source={{uri: URL}} 
+        source={{uri: this.state.URL}} 
       />
-        <Text>{firstName}</Text>
-        <Text>{lastName}</Text>
+        <Text>{this.state.firstName}</Text>
+        <Text>{this.state.lastName}</Text>
         <Button
           title="Биография"
           onPress={() => this.props.navigation.push('Biography')}
         />
         <Button
           title="Творби"
-          onPress={() => this.props.navigation.push('Works')}
+          onPress={() => this.props.navigation.push('Works', 
+          {
+            key: this.state.key
+          })}
         />
         <Button
           title="Мотиви"

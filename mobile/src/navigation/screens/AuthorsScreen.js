@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
+import {AppRegistry, ActivityIndicator, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
 import {getAuthors} from '../../services/HTTPService';
 
 
@@ -51,11 +51,11 @@ export default class AuthorScreen extends React.Component {
     return (
     <TouchableOpacity onPress={() => {
       this.props.navigation.push('Author',{
+        key: item.key,
         firstName: item.firstName, 
         lastName: item.lastName, 
         URL: item.url}
       );
-      //Alert.alert(item.firstName+" "+item.lastName);
 
       }}>
       <Image
@@ -69,26 +69,26 @@ export default class AuthorScreen extends React.Component {
       </TouchableOpacity>
     );
   };
-
-  render() {
-    return (
-      <FlatList
-        data={formatData(this.state.arr, numColumns)}
-        style={styles.container}
-        renderItem={this.renderItem}
-        numColumns={numColumns}
-      />
-    );
-  }
-/* render(){
-return (
-  <View>
-  <Text>{JSON.stringify(this.state.loading)}</Text>
-  <Text>{JSON.stringify(this.state.arr)}</Text>
-  </View>
   
-);
-}*/
+  render() {
+    if(this.state.loading){
+      return (
+        <View style={[styles.container, styles.horizontal]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )
+    } else {
+      return (
+        <FlatList
+          data={formatData(this.state.arr, numColumns)}
+          style={styles.container}
+          renderItem={this.renderItem}
+          numColumns={numColumns}
+        />
+      );  
+    }
+    
+  }
 
   componentWillMount(){
 

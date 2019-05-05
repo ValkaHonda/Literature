@@ -75,11 +75,6 @@ componentDidMount(){
         }
       }).then((response) => response.json())
       .then((response) => {
-        console.log(JSON.stringify(response.token));
-        console.log(JSON.stringify(response.token));
-        console.log(JSON.stringify(response.token));
-        console.log(JSON.stringify(response.token));
-        console.log("Hello, World!");
         this.setState({ token: response.token });
       }).catch((error) => console.log("Invalid user!")).then(
         () => {
