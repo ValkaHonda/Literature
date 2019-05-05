@@ -26,7 +26,10 @@ export default class BiographyTestsScreen extends Component {
     return (
       <View style={styles.container}>
         <Text>Тестове върху биографии</Text>
-        
+        <Button
+          title="Първи тест"
+          onPress={() => this.props.navigation.push('FirstBiographyTest')}
+        />
         
       </View>
     );

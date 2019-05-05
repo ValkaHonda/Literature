@@ -26,7 +26,10 @@ export default class WorkTestsScreen extends Component {
     return (
       <View style={styles.container}>
         <Text>Тестове върху творби</Text>
-        
+        <Button
+          title="Първи тест"
+          onPress={() => this.props.navigation.push('FirstWorkTest')}
+        />
         
       </View>
     );

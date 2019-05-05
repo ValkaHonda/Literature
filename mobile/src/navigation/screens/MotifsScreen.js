@@ -68,7 +68,6 @@ renderMotifs = (motifs) => {
           </View>
         );
       }
-      
     }
   );
 };

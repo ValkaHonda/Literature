@@ -6,9 +6,9 @@ import {getUserInfo} from '../../services/HTTPService';
 
 
 
-export default class AuthorTestsScreen extends Component {
+export default class FirstWorkTestScreen extends Component {
   static navigationOptions = {
-    title: 'Тестове върху автори',
+    title: 'Тест #1 - творби',
     headerStyle: {
       backgroundColor: '#f4511e',
     },
@@ -25,11 +25,8 @@ export default class AuthorTestsScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Тестове върху автори</Text>
-        <Button
-          title="Първи тест"
-          onPress={() => this.props.navigation.push('FirstAuthorTest')}
-        />
+        <Text>Първи тест върху творби</Text>
+        
         
       </View>
     );
