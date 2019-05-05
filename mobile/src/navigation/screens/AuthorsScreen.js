@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import {AppRegistry, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
+import {getAuthors} from '../../services/HTTPService';
 
 
-authors = [
-  {firstName: "Иван", lastName: "Вазов", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274310/literature/Ivan-Vazov_o6aedz.jpg"},
-  {firstName: "Йордан", lastName: "Йовков", URL: "https://res.cloudinary.com/literature-image-api/image/upload/v1556274309/literature/Jordan-Jovkov_sygsir.jpg"},
-]; 
+
 const formatData = (data, numColumns) => {
   const numberOfFullRows = Math.floor(data.length / numColumns);
 
@@ -20,6 +18,19 @@ const formatData = (data, numColumns) => {
 
 const numColumns = 3;
 export default class AuthorScreen extends React.Component {
+  state = {
+    arr: [],
+    loading: true,
+  };
+  constructor(props){
+    super(props);
+    getAuthors().then((response)=>{
+      this.setState({
+        arr: response,
+        loading: false,
+      });
+    }).catch((err)=>Alert.alert(JSON.stringify(err)));
+  }
   static navigationOptions = {
     title: 'Автори',
     headerStyle: {
@@ -42,7 +53,7 @@ export default class AuthorScreen extends React.Component {
       this.props.navigation.push('Author',{
         firstName: item.firstName, 
         lastName: item.lastName, 
-        URL: item.URL}
+        URL: item.url}
       );
       //Alert.alert(item.firstName+" "+item.lastName);
 
@@ -50,7 +61,7 @@ export default class AuthorScreen extends React.Component {
       <Image
         key={index}
         style = {{width: 100, height: 100}}
-        source={{uri: item.URL}}    
+        source={{uri: item.url}}    
         onPress={() => {
           Alert.alert('You tapped the button!');
         }}
@@ -62,15 +73,26 @@ export default class AuthorScreen extends React.Component {
   render() {
     return (
       <FlatList
-        data={formatData(authors, numColumns)}
+        data={formatData(this.state.arr, numColumns)}
         style={styles.container}
         renderItem={this.renderItem}
         numColumns={numColumns}
       />
     );
   }
-
+/* render(){
+return (
+  <View>
+  <Text>{JSON.stringify(this.state.loading)}</Text>
+  <Text>{JSON.stringify(this.state.arr)}</Text>
+  </View>
   
+);
+}*/
+
+  componentWillMount(){
+
+  }
 
 }
 
