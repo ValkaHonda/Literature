@@ -84,7 +84,9 @@ renderMotifs = (motifs) => {
     else {
       return (
         <View style={styles.container}>
-          <Text>Мотиви на {this.state.firstName.toString()+" "+this.state.lastName.toString()}</Text>  
+          <Text style={{fontWeight: 'bold'}}>
+            {this.state.firstName.toString()+" "+this.state.lastName.toString()}
+          </Text>  
           <ScrollView>
           {this.renderMotifs(this.state.array)}
           </ScrollView>

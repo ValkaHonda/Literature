@@ -37,7 +37,7 @@ export default class AnalysisScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.state.title.toString()}</Text>
+        <Text style={{fontWeight: 'bold'}}>{this.state.title.toString()}</Text>
         <ScrollView>
           <Text>{this.state.description.toString()}</Text>
         </ScrollView>

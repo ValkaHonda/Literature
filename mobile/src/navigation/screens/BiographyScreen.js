@@ -37,7 +37,9 @@ export default class BiographyScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>{this.state.firstName.toString()+" "+this.state.lastName.toString()}</Text>
+        <Text style={{fontWeight: 'bold'}}>
+          {this.state.firstName.toString()+" "+this.state.lastName.toString()}
+        </Text>
         <ScrollView>
         <Text>{this.state.biography.toString()}</Text>
         </ScrollView>
