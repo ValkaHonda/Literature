@@ -53,7 +53,8 @@ export default class AuthorScreen extends React.Component {
       this.props.navigation.push('Author',{
         key: item.key,
         firstName: item.firstName, 
-        lastName: item.lastName, 
+        lastName: item.lastName,
+        biography: item.biography,
         URL: item.url}
       );
 

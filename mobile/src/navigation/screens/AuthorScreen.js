@@ -19,15 +19,15 @@ export default class AuthorScreen extends Component {
     const { navigation } = this.props;
     const key = navigation.getParam('key', 'NO-ID'); 
     const URL = navigation.getParam('URL', 'NO-URL');
-    console.log("URL:------------ "+URL);
-    
-    const firstName = navigation.getParam('firstName', 'some default value');
-    const lastName = navigation.getParam('lastName', 'some default value');
+    const firstName = navigation.getParam('firstName', 'NO-FIRST-NAME');
+    const lastName = navigation.getParam('lastName', 'NO-LAST-NAME');
+    const biography = navigation.getParam('biography', 'NO-BIOGRAPHY');
     this.state = {
       key: key,
       URL: URL,
       firstName: firstName,
-      lastName: lastName
+      lastName: lastName,
+      biography: biography
     }; 
   }
 
@@ -49,7 +49,11 @@ export default class AuthorScreen extends Component {
         <Text>{this.state.lastName}</Text>
         <Button
           title="Биография"
-          onPress={() => this.props.navigation.push('Biography')}
+          onPress={() => this.props.navigation.push('Biography', {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            biography: this.state.biography
+          })}
         />
         <Button
           title="Творби"
