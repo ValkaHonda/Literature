@@ -36,4 +36,17 @@ export const getWorksByAuthorID = (authorID) => {
   }).then((res) => res.json());
 }; 
 
-
+export const getMotifsByAuthorID = (authorID) => {
+  const token = StoreGlobal({
+    type:'get', 
+    key:'token'
+  });
+  const URL = `https://thawing-eyrie-26509.herokuapp.com/authors/${authorID}/motifs`;
+  return fetch(URL, { 
+    method: 'get', 
+    headers: new Headers({
+      'Authorization': `Bearer ${token}`, 
+      'Content-Type': 'application/json'
+    })
+  }).then((res) => res.json());
+}; 

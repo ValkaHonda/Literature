@@ -64,7 +64,11 @@ export default class AuthorScreen extends Component {
         />
         <Button
           title="Мотиви"
-          onPress={() => this.props.navigation.push('Motifs')}
+          onPress={() => this.props.navigation.push('Motifs', {
+            key: this.state.key,
+            firstName: this.state.firstName,
+            lastName: this.state.lastName
+          })}
         />
 
       </View>
