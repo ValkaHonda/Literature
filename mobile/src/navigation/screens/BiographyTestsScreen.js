@@ -44,7 +44,11 @@ renderArray = (array) =>
       return (
         <Button
           title="Първи тест"
-          onPress={() => this.props.navigation.push('FirstBiographyTest')}
+          onPress={() => this.props.navigation.push('FirstBiographyTest', 
+          {
+            biographyTestID: element.id
+          }
+          )}
         />
       );
     }

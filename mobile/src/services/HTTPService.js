@@ -64,3 +64,18 @@ export const getAllBiographyTests = () => {
     })
   }).then((res) => res.json());
 }; 
+
+export const getBiographyQuestionsByQuizID = (biographyQuizID) => {
+  const token = StoreGlobal({
+    type:'get', 
+    key:'token'
+  });
+  const URL = `https://thawing-eyrie-26509.herokuapp.com/author/biography-quiz/${biographyQuizID}/question`;
+  return fetch(URL, { 
+    method: 'get', 
+    headers: new Headers({
+      'Authorization': `Bearer ${token}`, 
+      'Content-Type': 'application/json'
+    })
+  }).then((res) => res.json());
+}; 
