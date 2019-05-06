@@ -24,7 +24,7 @@ export default class HomeScreen extends Component {
     id: '',
     login: false
   };
-
+/*
   async componentWillMount(){
     const loginString = await AsyncStorage.getItem("login");
     const token = await AsyncStorage.getItem("token");
@@ -50,11 +50,10 @@ export default class HomeScreen extends Component {
       });
     //  Alert.alert(StoreGlobal({type: 'get', key: 'token'}));
     }
+    
 }
+*/
 
-componentDidMount(){
-  
-}
 
   onEmailChange = e => {
       this.setState({ email: e.target.value });
@@ -76,43 +75,17 @@ componentDidMount(){
       }).then((response) => response.json())
       .then((response) => {
         this.setState({ token: response.token });
-      }).catch((error) => console.log("Invalid user!")).then(
-        () => {
-          fetch(`${this.url.base}/users/id`,{
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify({username: `${this.state.email}`}), // data can be `string` or {object}!
-            headers:{
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${this.state.token}`
-            }
-          }).then((response) => response.json())
-          .then(async (response) => {
-            //AsyncStorage.setItem('id',JSON.stringify(response)); // In the next version of React Native this will be deprecated
-            await this.setState({ id: JSON.stringify(response)});
-            await this.setState({ login: true});
-            await AsyncStorage.setItem("id", this.state.id);
-            await AsyncStorage.setItem("token", this.state.token);
-            await AsyncStorage.setItem("login", JSON.stringify(this.state.login));
-            StoreGlobal({
-              type:'set', 
-              key:'id', 
-              value: `${this.state.id}`});
-            StoreGlobal({
-              type:'set', 
-              key:'login', 
-              value: `${this.state.login}`});
-              
-              this.props.navigation.push('Details');
-          })
-          .catch((error) => {
-            Alert.alert("Няма такъв потребител!");
-          });
-      }
-
-      )
-      .catch((error) => {
-        Alert.alert("error");
-      });
+        StoreGlobal({
+          type:'set', 
+          key:'token', 
+          value: `${response.token}`});
+        this.props.navigation.push('Details');
+      }).catch(
+        (error) => {
+          console.log("User log-in error!")
+          console.log(error);
+        }
+      );
   };
   onLogInButtonPress = async () => {
     await this.sendRequest();

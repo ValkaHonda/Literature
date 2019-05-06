@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View, Button} from 'react-native';
+import {Alert, StyleSheet, ActivityIndicator, Text, View, Button, ScrollView} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
-import {getUserInfo} from '../../services/HTTPService';
+import {getAllBiographyTests} from '../../services/HTTPService';
 
 
 
@@ -18,21 +18,58 @@ export default class BiographyTestsScreen extends Component {
     },
   };
 
+state = {
+loading: true,
+array: []
+};
 
+constructor(props)
+{
+  super(props);
+  getAllBiographyTests().then(
+    (response) => {
+      this.setState({
+        array: response,
+        loading: false
+      })
+    }
+  ).catch((error) => console.log(error));
 
+}
 
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Тестове върху биографии</Text>
+renderArray = (array) => 
+{
+  return array.map(
+    (element, index) => {
+      return (
         <Button
           title="Първи тест"
           onPress={() => this.props.navigation.push('FirstBiographyTest')}
         />
-        
-      </View>
-    );
+      );
+    }
+  );
+};
+
+  render() {
+    if (this.state.loading) 
+    {
+      return (
+        <View style={[styles.container, styles.horizontal]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )
+    } else
+    {
+      return (
+        <View style={styles.container}>
+          <Text>Тестове върху биографии</Text>
+          <ScrollView>
+          {this.renderArray(this.state.array)}
+          </ScrollView>
+          </View>
+      );
+    }
   }
 }
 
