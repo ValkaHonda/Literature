@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import project.areas.users.entities.Role;
 import project.areas.users.services.RoleService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 

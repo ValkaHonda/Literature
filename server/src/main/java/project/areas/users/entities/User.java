@@ -35,6 +35,7 @@ public class User implements UserDetails{
 
     public User(String subject, String s, Collection<? extends GrantedAuthority> authorities) {
         this.setRoles(new HashSet<>());
+        this.setEmail(subject);
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
