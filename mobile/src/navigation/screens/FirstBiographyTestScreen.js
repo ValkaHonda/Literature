@@ -26,9 +26,10 @@ export default class FirstBiographyTestScreen extends Component {
   state = {
     id: 0,
     loading: true,
-    array: []
-
-  };
+    array: [],
+    buttonClicks: [],
+    chosenAnswer: 0
+};
 
   constructor(props){
     super(props);
@@ -43,6 +44,16 @@ getBiographyQuestionsByQuizID(id)
       loading: false,
       array: this.transformArray(response)
     });
+let arr = [];
+for (let i = 0; i < response.length; i++) 
+{
+  arr.push(0);
+}
+
+this.setState({
+  buttonClicks: arr
+});
+
   }
 ).catch(console.log);  
   }
@@ -70,15 +81,26 @@ getBiographyQuestionsByQuizID(id)
       });
   }
 
-renderAnswers = (answers) => 
+renderAnswers = (answers, questionIndex) => 
 {
   return answers.map(
-    (answer) => 
+    (answer, index) => 
     {
       return (
         <View>
           <Button
+          color = {(this.state.buttonClicks[questionIndex] === 0 && index + 1 !== this.state.buttonClicks[questionIndex])?"#FE434C":"#39A78E"}
+          onPress = {() => {
+            Alert.alert('A: '+index+' Q: '+questionIndex);
+            const buttons = this.state.buttonClicks;
+            buttons[questionIndex] = index + 1;
+            this.setState({
+              buttonClicks: buttons, 
+              chosenAnswer: index + 1
+              });
+          }}
             title = {answer}
+
           />
           <Text style={{fontSize: 2}}></Text>
         </View>
@@ -90,11 +112,11 @@ renderAnswers = (answers) =>
 renderQuestions = (questions) => 
 {
   return questions.map(
-    (question) => {
+    (question, questionIndex) => {
       return (
         <View>
           <Text style={{textAlignVertical: "center", textAlign: "center", fontWeight: 'bold'}}>{question.key}. {question.question}</Text>
-          {this.renderAnswers(question.answers)}
+          {this.renderAnswers(question.answers, questionIndex)}
         </View>
       );
     }
@@ -113,10 +135,9 @@ renderQuestions = (questions) =>
       return (
         <View style={styles.container}>
           <ScrollView>
+            <Text>{JSON.stringify(this.state.buttonClicks)}</Text>
             {this.renderQuestions(this.state.array)}
-          </ScrollView>
-          
-          
+          </ScrollView> 
         </View>
       );
     }
