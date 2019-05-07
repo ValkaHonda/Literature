@@ -41,16 +41,65 @@ getBiographyQuestionsByQuizID(id)
     this.setState({
       id: id,
       loading: false,
-      array: response
+      array: this.transformArray(response)
     });
   }
-).catch(console.log);
-
-    
+).catch(console.log);  
   }
 
+  transformArray = (array) =>
+  {
+    return array.map(
+      (element) => 
+      {
+        return {
+          key: element.id,
+          question: element.question,
+          answers: [
+            element.rightAnswer, 
+            element.wrongAnswer1, 
+            element.wrongAnswer2, 
+            element.wrongAnswer3
+          ].sort((el1, el2) => {
+            if(el1 < el2) {return -1;}
+            if(el1 > el2) {return 1;}
+            return 0;
+          })
+        };
+      
+      });
+  }
 
+renderAnswers = (answers) => 
+{
+  return answers.map(
+    (answer) => 
+    {
+      return (
+        <View>
+          <Button
+            title = {answer}
+          />
+          <Text style={{fontSize: 2}}></Text>
+        </View>
+      );
+    }
+  ); 
+};
 
+renderQuestions = (questions) => 
+{
+  return questions.map(
+    (question) => {
+      return (
+        <View>
+          <Text style={{textAlignVertical: "center", textAlign: "center", fontWeight: 'bold'}}>{question.key}. {question.question}</Text>
+          {this.renderAnswers(question.answers)}
+        </View>
+      );
+    }
+  );
+}; 
 
   render() {
     if (this.state.loading) 
@@ -63,9 +112,8 @@ getBiographyQuestionsByQuizID(id)
     } else {
       return (
         <View style={styles.container}>
-          <Text>Първи тест върху биографии</Text>
           <ScrollView>
-            <Text>{JSON.stringify(this.state.array)}</Text>
+            {this.renderQuestions(this.state.array)}
           </ScrollView>
           
           
