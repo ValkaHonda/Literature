@@ -88,8 +88,9 @@ renderAnswers = (answers, questionIndex) =>
     {
       return (
         <View>
+          
           <Button
-          color = {(this.state.buttonClicks[questionIndex] === 0 && index + 1 !== this.state.buttonClicks[questionIndex])?"#FE434C":"#39A78E"}
+          color = {(this.state.buttonClicks[questionIndex] === index+1)?"#39A78E":"#FE434C"}
           onPress = {() => {
             Alert.alert('A: '+index+' Q: '+questionIndex);
             const buttons = this.state.buttonClicks;
