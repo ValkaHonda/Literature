@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService{
         User user = this.userRepository.findUserByEmail(usernameBindingModel.getUsername());
         return user.getId().toString();
     }
+
+    @Override
+    public User findUserEntityByUserName(String username) {
+        return this.userRepository.findUserByEmail(username);
+    }
 }
