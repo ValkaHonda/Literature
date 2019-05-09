@@ -107,9 +107,9 @@ export default class HomeScreen extends Component {
   render() {
     return (
     
-      <ImageBackground source={
-        {uri: 'https://res.cloudinary.com/literature-image-api/image/upload/v1557433438/literature/Book_Cover_hfcdjw.jpg'}} 
-        style={[{width: '100%', height: '100%'}, styles.container]}
+      <ImageBackground 
+      source={require('../../images/Book-Cover.jpg')}
+      style={[{width: '100%', height: '100%'}, styles.container]}
         >
         <Text style={styles.baseText}>Не се гаси туй,</Text>
         <Text style={styles.baseText}>що не гасне.</Text>
