@@ -4,6 +4,7 @@ import {
   StyleSheet, 
   Text, 
   View,
+  ImageBackground,
   Button, 
   TextInput,
   AsyncStorage
@@ -90,43 +91,67 @@ export default class HomeScreen extends Component {
   onLogInButtonPress = async () => {
     await this.sendRequest();
   };
-  static navigationOptions = {
-    title: 'Българска литература',
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      alignSelf: 'center', 
-      textAlign:"center",
-      flex:1,
-    },
-  };
+  // static navigationOptions = {
+  //   title: 'Българска литература',
+  //   headerStyle: {
+  //     backgroundColor: '#f4511e',
+  //   },
+  //   headerTintColor: '#fff',
+  //   headerTitleStyle: {
+  //     fontWeight: 'bold',
+  //     alignSelf: 'center', 
+  //     textAlign:"center",
+  //     flex:1,
+  //   },
+  // };
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Потребителско име:</Text>
+    
+      <ImageBackground source={
+        {uri: 'https://res.cloudinary.com/literature-image-api/image/upload/v1557433438/literature/Book_Cover_hfcdjw.jpg'}} 
+        style={[{width: '100%', height: '100%'}, styles.container]}
+        >
+        <Text style={styles.baseText}>Не се гаси туй,</Text>
+        <Text style={styles.baseText}>що не гасне.</Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+
         <TextInput
             style={styles.textBox}
             onChangeText={(emailInput) => this.setState({email:emailInput})}
+            placeholder = "Потребителско име"
+            placeholderTextColor = "rgba(0, 0, 0, 0.3)"
+            textAlign={'center'}
+            selectionColor={"rgba(0, 0, 0, 0.4)"}
         />
-        <Text>Парола:</Text>
+        <Text></Text>
         <TextInput
             style={styles.textBox}
             onChangeText={(passInput) => this.setState({pass:passInput})}
             secureTextEntry={true}
+            placeholder = "Парола"
+            placeholderTextColor = "rgba(0, 0, 0, 0.3)"
+            textAlign={'center'}
+            selectionColor={"rgba(0, 0, 0, 0.4)"}
         />
-        <Button
-          title="Вход"
-          onPress={this.onLogInButtonPress}
+        <Text></Text>
+        <Button 
+          color = "rgba(52, 52, 52, 0.7)"
+          title = "Вход"
+          onPress = {this.onLogInButtonPress}
         />
-      </View>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  baseText: {
+    fontFamily: 'HilandarskiUstav5',
+    fontSize: 30
+    },
+
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -136,8 +161,9 @@ const styles = StyleSheet.create({
   textBox: {
     height: 40, 
     width: 200,
-    borderColor: 'gray', 
+    borderColor: 'rgb(104, 0, 0)', 
     borderWidth: 1, 
-    backgroundColor: "#ffffff",
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
 },
+
 });

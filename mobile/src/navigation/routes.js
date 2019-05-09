@@ -54,6 +54,9 @@ const RootStack = createStackNavigator(
     FirstAuthorTest: FirstAuthorTestScreen
     
   },
+  { 
+    headerMode: 'none' 
+  },
   {
     initialRouteName: 'Home',
   }
