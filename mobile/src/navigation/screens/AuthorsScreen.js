@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {AppRegistry, ImageBackground, ActivityIndicator, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
 import {getAuthors} from '../../services/HTTPService';
+import { SearchBar } from 'react-native-elements';
 
 
 
@@ -21,6 +22,7 @@ export default class AuthorScreen extends React.Component {
   state = {
     arr: [],
     loading: true,
+    search: '',
   };
   constructor(props){
     super(props);
@@ -70,8 +72,12 @@ export default class AuthorScreen extends React.Component {
           </TouchableOpacity>
     );
   };
-  
+  updateSearch = search => {
+    this.setState({ search });
+  };
   render() {
+    const { search } = this.state;
+
     if(this.state.loading){
       return (
         <View style={[styles.container, styles.horizontal]}>
@@ -83,6 +89,11 @@ export default class AuthorScreen extends React.Component {
         <ImageBackground 
         source={require('../../images/Moleskin.png')}
         style={[{width: '100%', height: '100%'}, styles.container]}>
+        <SearchBar
+          placeholder="Type Here..."
+          onChangeText={this.updateSearch}
+          value={search}
+        />
             <FlatList
               data={formatData(this.state.arr, numColumns)}
               style={styles.container}
