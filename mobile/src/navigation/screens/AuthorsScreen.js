@@ -94,7 +94,7 @@ export default class AuthorScreen extends React.Component {
         />
             <FlatList
               data={formatData(this.state.arr.filter(
-                (element)=>element.firstName.includes(this.state.search)
+                (element)=>(element.firstName+" "+element.lastName).toLowerCase().includes(this.state.search.toLowerCase())
               ), numColumns)}
               style={styles.container}
               renderItem={this.renderItem}

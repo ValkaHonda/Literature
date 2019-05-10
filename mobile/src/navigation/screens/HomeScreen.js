@@ -137,6 +137,8 @@ export default class HomeScreen extends Component {
         />
         <Text></Text>
         <Button 
+
+
           color = "rgba(52, 52, 52, 0.7)"
           title = "Вход"
           onPress = {this.onLogInButtonPress}

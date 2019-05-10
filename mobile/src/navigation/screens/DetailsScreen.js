@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Alert, StyleSheet, Text, View, Button, ImageBackground, Image} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default class DetailsScreen extends Component {
@@ -19,29 +20,38 @@ export default class DetailsScreen extends Component {
     }
 
 
-//480 / 535 = 96/107
   render() {
     return (
       <ImageBackground 
       source={require('../../images/Moleskin.png')}
       style={styles.container}>
       
-      <Image style={[{width: 211.2, height: 235.4, alignSelf: 'center'},styles.textPadding]} source={require('../../images/Ivan-Vazov.png')}></Image>
-        <Button
-          title="Автори"
-          onPress={() => this.props.navigation.push('Authors')}
-        />
+      <Image style={[{width: 211.2, height: 235.4, alignSelf: 'center'},styles.textPadding]} 
+      source={require('../../images/Ivan-Vazov.png')}></Image>
+        
+        
+        <View style={{flexDirection:'row'}}>
 
-        <Button
-          title="Тестове"
-          onPress={() => this.props.navigation.push('Tests')}
-        />
 
-        <Button
-          title="Потребител"
-          onPress={() => this.props.navigation.push('User')}
-        />
+        <TouchableOpacity onPress={() => {
+          this.props.navigation.push('Authors')}}>
+        <Image style={[{width: 100, height: 100}]} 
+      source={require('../../images/Author-Book-Updated.png')}/>
+        </TouchableOpacity>
 
+
+        <TouchableOpacity onPress={() => {
+          this.props.navigation.push('Tests')}}>
+        <Image style={[{width: 100, height: 100}]} 
+      source={require('../../images/Test-Book-Updated.png')}/>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => {
+          this.props.navigation.push('User')}}>
+        <Image style={[{width: 100, height: 100}]} 
+      source={require('../../images/User-Book-Updated.png')}/>
+        </TouchableOpacity>
+        </View>
 
       </ImageBackground>
     );
