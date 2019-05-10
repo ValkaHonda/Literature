@@ -58,9 +58,7 @@ export default class AuthorScreen extends React.Component {
             lastName: item.lastName,
             biography: item.biography,
             URL: item.url}
-          );
-
-          }}>
+          );}}>
           <Image
             key={index}
             style = {{width: 100, height: 100}}
@@ -95,7 +93,9 @@ export default class AuthorScreen extends React.Component {
           value={search}
         />
             <FlatList
-              data={formatData(this.state.arr, numColumns)}
+              data={formatData(this.state.arr.filter(
+                (element)=>element.firstName.includes(this.state.search)
+              ), numColumns)}
               style={styles.container}
               renderItem={this.renderItem}
               numColumns={numColumns}
