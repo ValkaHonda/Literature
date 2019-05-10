@@ -26,8 +26,9 @@ export default class DetailsScreen extends Component {
       source={require('../../images/Moleskin.png')}
       style={styles.container}>
       
-      <Image style={[{width: 211.2, height: 235.4, alignSelf: 'center'},styles.textPadding]} 
+      <Image style={[{width: 232.32, height: 258.94, alignSelf: 'center'},styles.textPadding]} 
       source={require('../../images/Ivan-Vazov.png')}></Image>
+      <Text style={styles.quoteStyle}>"Книгите са най-евтината ваканция, която може да си купите."</Text>
         
         
         <View style={{flexDirection:'row'}}>
@@ -35,20 +36,20 @@ export default class DetailsScreen extends Component {
 
         <TouchableOpacity onPress={() => {
           this.props.navigation.push('Authors')}}>
-        <Image style={[{width: 100, height: 100}]} 
+        <Image style={[{width: 120, height: 120}]} 
       source={require('../../images/Author-Book-Updated.png')}/>
         </TouchableOpacity>
 
 
         <TouchableOpacity onPress={() => {
           this.props.navigation.push('Tests')}}>
-        <Image style={[{width: 100, height: 100}]} 
+        <Image style={[{width: 120, height: 120}]} 
       source={require('../../images/Test-Book-Updated.png')}/>
         </TouchableOpacity>
 
         <TouchableOpacity onPress={() => {
           this.props.navigation.push('User')}}>
-        <Image style={[{width: 100, height: 100}]} 
+        <Image style={[{width: 120, height: 120}]} 
       source={require('../../images/User-Book-Updated.png')}/>
         </TouchableOpacity>
         </View>
@@ -66,5 +67,12 @@ const styles = StyleSheet.create({
   },
   textPadding: {
     marginTop: 30,
+  },
+  quoteStyle: 
+  {
+    fontFamily: 'Lorenco Font4You',
+    fontSize: 30,
+    color: 'black',
+    textAlign: 'center'
   }
 });
