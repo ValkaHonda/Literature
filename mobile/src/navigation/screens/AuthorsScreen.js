@@ -51,7 +51,9 @@ export default class AuthorScreen extends React.Component {
       return <View style={[styles.item, styles.itemInvisible]} />;
     }
     return (
-        <TouchableOpacity onPress={() => {
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onPress={() => {
           this.props.navigation.push('Author',{
             key: item.key,
             firstName: item.firstName, 
@@ -61,12 +63,10 @@ export default class AuthorScreen extends React.Component {
           );}}>
           <Image
             key={index}
-            style = {{width: 100, height: 100}}
+            style={{width: 100, height: 100}}
             source={{uri: item.url}}    
-            onPress={() => {
-              Alert.alert('You tapped the button!');
-            }}
           />
+          <Text style={styles.authorName}>{item.firstName+" "+item.lastName}</Text>
           </TouchableOpacity>
     );
   };
@@ -88,7 +88,7 @@ export default class AuthorScreen extends React.Component {
         source={require('../../images/Moleskin.png')}
         style={[{width: '100%', height: '100%'}, styles.container]}>
         <SearchBar
-          placeholder="Type Here..."
+          placeholder="Потърсете автор"
           onChangeText={this.updateSearch}
           value={search}
         />
@@ -96,7 +96,7 @@ export default class AuthorScreen extends React.Component {
               data={formatData(this.state.arr.filter(
                 (element)=>(element.firstName+" "+element.lastName).toLowerCase().includes(this.state.search.toLowerCase())
               ), numColumns)}
-              style={styles.container}
+              style={[styles.MainScreenBox]}
               renderItem={this.renderItem}
               numColumns={numColumns}
             />
@@ -131,4 +131,13 @@ const styles = StyleSheet.create({
   itemText: {
     color: '#fff',
   },
+  authorName: 
+  {
+    textAlign: 'center'
+  },
+  MainScreenBox: {
+    flex:1,
+    display: "flex",
+    flexDirection: "column"
+},
 });
