@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View, Button} from 'react-native';
+import {Alert, StyleSheet, Text, View, Button, ImageBackground, Image} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 
 
@@ -19,10 +19,14 @@ export default class DetailsScreen extends Component {
     }
 
 
-
+//480 / 535 = 96/107
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground 
+      source={require('../../images/Moleskin.png')}
+      style={styles.container}>
+      
+      <Image style={[{width: 211.2, height: 235.4, alignSelf: 'center'},styles.textPadding]} source={require('../../images/Ivan-Vazov.png')}></Image>
         <Button
           title="Автори"
           onPress={() => this.props.navigation.push('Authors')}
@@ -34,15 +38,12 @@ export default class DetailsScreen extends Component {
         />
 
         <Button
-          title="Статистики"
-          onPress={() => this.props.navigation.push('Statistics')}
+          title="Потребител"
+          onPress={() => this.props.navigation.push('User')}
         />
 
-        <Button
-          title="Ранглисти"
-          onPress={() => this.props.navigation.push('RangLists')}
-        />
-      </View>
+
+      </ImageBackground>
     );
   }
 }
@@ -51,7 +52,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#ffff00',
     justifyContent: 'space-between',
   },
+  textPadding: {
+    marginTop: 30,
+  }
 });

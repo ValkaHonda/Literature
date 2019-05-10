@@ -6,19 +6,7 @@ import {getUserInfo} from '../../services/HTTPService';
 
 
 
-export default class AuthorTestsScreen extends Component {
-  static navigationOptions = {
-    title: 'Тестове върху автори',
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  };
-
-
+export default class TestsScreen extends Component {
 
 
 
@@ -27,10 +15,13 @@ export default class AuthorTestsScreen extends Component {
       <ImageBackground 
         source={require('../../images/Moleskin.png')}
         style={[{width: '100%', height: '100%'}]}>
-        <Text>Тестове върху автори</Text>
         <Button
-          title="Първи тест"
-          onPress={() => this.props.navigation.push('FirstAuthorTest')}
+          title="Статистики"
+          onPress={() => this.props.navigation.push('Statistics')}
+        />
+        <Button
+          title="Ранглисти"
+          onPress={() => this.props.navigation.push('RangLists')}
         />
         
       </ImageBackground>

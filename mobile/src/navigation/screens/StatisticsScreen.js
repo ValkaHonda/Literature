@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button} from 'react-native';
+import {StyleSheet, Text, View, Button, ImageBackground} from 'react-native';
 
 
 export default class StatisticsScreen extends Component {
@@ -18,7 +18,9 @@ export default class StatisticsScreen extends Component {
   };
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}]}>
         <Text>Всички статистики</Text>
         <Button
           title="Статистика върху биографии"
@@ -32,7 +34,7 @@ export default class StatisticsScreen extends Component {
           title="Статистика върху автори"
           onPress={() => this.props.navigation.push('AuthorStatistics')}
         />
-      </View>
+      </ImageBackground>
     );
   }
 }

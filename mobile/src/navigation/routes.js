@@ -24,6 +24,7 @@ import AuthorRangListScreen from './screens/AuthorRangListScreen';
 import FirstBiographyTestScreen from './screens/FirstBiographyTestScreen';
 import FirstWorkTestScreen from './screens/FirstWorkTestScreen';
 import FirstAuthorTestScreen from './screens/FirstAuthorTestScreen';
+import UserScreen from './screens/UserScreen';
 
 
 
@@ -51,7 +52,8 @@ const RootStack = createStackNavigator(
     AuthorRangList: AuthorRangListScreen,
     FirstBiographyTest: FirstBiographyTestScreen,
     FirstWorkTest: FirstWorkTestScreen,
-    FirstAuthorTest: FirstAuthorTestScreen
+    FirstAuthorTest: FirstAuthorTestScreen,
+    User: UserScreen
     
   },
   { 

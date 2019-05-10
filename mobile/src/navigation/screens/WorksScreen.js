@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, FlatList} from 'react-native';
+import {Alert, ImageBackground, ActivityIndicator, StyleSheet, Text, View, Button, FlatList} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getWorksByAuthorID} from '../../services/HTTPService';
 
@@ -68,6 +68,9 @@ export default class WorksScreen extends Component {
     }
     else {
       return (
+        <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}]}>
         <FlatList
           data={this.state.array.map((element, index) => {
               return {
@@ -86,6 +89,7 @@ export default class WorksScreen extends Component {
             />);
           }}
         />
+        </ImageBackground>
       );
     }   
   }
@@ -105,7 +109,4 @@ export default class WorksScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#ffff00',
-  },
 });

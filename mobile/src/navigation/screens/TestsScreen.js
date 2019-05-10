@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View, Button} from 'react-native';
+import {Alert, ImageBackground, StyleSheet, Text, View, Button} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getUserInfo} from '../../services/HTTPService';
 
@@ -22,7 +22,9 @@ export default class TestsScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}]}>
         <Text>Всички тестове</Text>
         <Button
           title="Тестове върху биографии"
@@ -37,7 +39,7 @@ export default class TestsScreen extends Component {
           onPress={() => this.props.navigation.push('AuthorTests')}
         />
         
-      </View>
+      </ImageBackground>
     );
   }
 }

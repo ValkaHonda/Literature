@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View, Button, Image} from 'react-native';
+import {Alert, ImageBackground, StyleSheet, Text, View, Button, Image} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 
 
@@ -39,7 +39,9 @@ export default class AuthorScreen extends Component {
   render() {
     
     return (
-      <View style={styles.container}>
+      <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}, styles.container]}>
       
         <Image
         style = {{width: 100, height: 100}}
@@ -71,7 +73,7 @@ export default class AuthorScreen extends Component {
           })}
         />
 
-      </View>
+      </ImageBackground>
     );
   }
 }

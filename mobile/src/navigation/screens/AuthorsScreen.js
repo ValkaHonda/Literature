@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry, ActivityIndicator, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
+import {AppRegistry, ImageBackground, ActivityIndicator, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
 import {getAuthors} from '../../services/HTTPService';
 
 
@@ -49,25 +49,25 @@ export default class AuthorScreen extends React.Component {
       return <View style={[styles.item, styles.itemInvisible]} />;
     }
     return (
-    <TouchableOpacity onPress={() => {
-      this.props.navigation.push('Author',{
-        key: item.key,
-        firstName: item.firstName, 
-        lastName: item.lastName,
-        biography: item.biography,
-        URL: item.url}
-      );
+        <TouchableOpacity onPress={() => {
+          this.props.navigation.push('Author',{
+            key: item.key,
+            firstName: item.firstName, 
+            lastName: item.lastName,
+            biography: item.biography,
+            URL: item.url}
+          );
 
-      }}>
-      <Image
-        key={index}
-        style = {{width: 100, height: 100}}
-        source={{uri: item.url}}    
-        onPress={() => {
-          Alert.alert('You tapped the button!');
-        }}
-      />
-      </TouchableOpacity>
+          }}>
+          <Image
+            key={index}
+            style = {{width: 100, height: 100}}
+            source={{uri: item.url}}    
+            onPress={() => {
+              Alert.alert('You tapped the button!');
+            }}
+          />
+          </TouchableOpacity>
     );
   };
   
@@ -80,12 +80,16 @@ export default class AuthorScreen extends React.Component {
       )
     } else {
       return (
-        <FlatList
-          data={formatData(this.state.arr, numColumns)}
-          style={styles.container}
-          renderItem={this.renderItem}
-          numColumns={numColumns}
-        />
+        <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}, styles.container]}>
+            <FlatList
+              data={formatData(this.state.arr, numColumns)}
+              style={styles.container}
+              renderItem={this.renderItem}
+              numColumns={numColumns}
+            />
+        </ImageBackground>
       );  
     }
     
@@ -100,7 +104,7 @@ export default class AuthorScreen extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical: 20,
+    marginVertical: 0,
   },
   item: {
     backgroundColor: '#4D243D',

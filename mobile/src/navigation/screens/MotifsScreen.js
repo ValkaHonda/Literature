@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, ActivityIndicator, StyleSheet, Text, ScrollView, View, Button} from 'react-native';
+import {Alert, ImageBackground, ActivityIndicator, StyleSheet, Text, ScrollView, View, Button} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getMotifsByAuthorID} from '../../services/HTTPService';
 
@@ -82,7 +82,9 @@ renderMotifs = (motifs) => {
     }
     else {
       return (
-        <View style={styles.container}>
+        <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}]}>
           <Text style={{fontWeight: 'bold'}}>
             {this.state.firstName.toString()+" "+this.state.lastName.toString()}
           </Text>  
@@ -90,7 +92,7 @@ renderMotifs = (motifs) => {
           {this.renderMotifs(this.state.array)}
           </ScrollView>
           
-        </View>
+        </ImageBackground>
       );
     }
   }

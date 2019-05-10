@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, ActivityIndicator, Text, View, Button, ScrollView} from 'react-native';
+import {Alert, StyleSheet, ActivityIndicator, Text, View, Button, ScrollView, ImageBackground} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getAllBiographyTests} from '../../services/HTTPService';
 
@@ -66,12 +66,14 @@ renderArray = (array) =>
     } else
     {
       return (
-        <View style={styles.container}>
+        <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}]}>
           <Text>Тестове върху биографии</Text>
           <ScrollView>
           {this.renderArray(this.state.array)}
           </ScrollView>
-          </View>
+          </ImageBackground>
       );
     }
   }

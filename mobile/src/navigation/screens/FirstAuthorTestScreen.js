@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, StyleSheet, Text, View, Button} from 'react-native';
+import {Alert, StyleSheet, Text, View, Button, ImageBackground} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getUserInfo} from '../../services/HTTPService';
 
@@ -24,11 +24,13 @@ export default class FirstAuthorTestScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}]}>
         <Text>Първи тест върху автори</Text>
         
         
-      </View>
+      </ImageBackground>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, ScrollView} from 'react-native';
+import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, ScrollView, ImageBackground} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getBiographyQuestionsByQuizID} from '../../services/HTTPService';
 /*import {
@@ -134,12 +134,14 @@ renderQuestions = (questions) =>
       )
     } else {
       return (
-        <View style={styles.container}>
+        <ImageBackground 
+        source={require('../../images/Moleskin.png')}
+        style={[{width: '100%', height: '100%'}]}>
           <ScrollView>
             <Text>{JSON.stringify(this.state.buttonClicks)}</Text>
             {this.renderQuestions(this.state.array)}
           </ScrollView> 
-        </View>
+        </ImageBackground>
       );
     }
   }
