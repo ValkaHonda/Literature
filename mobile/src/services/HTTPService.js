@@ -79,3 +79,14 @@ export const getBiographyQuestionsByQuizID = (biographyQuizID) => {
     })
   }).then((res) => res.json());
 }; 
+
+export const login = (state) => {
+  const URL = `https://thawing-eyrie-26509.herokuapp.com`;
+  return fetch(`${URL}/authenticate`,{
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(state), // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => response.json())
+};

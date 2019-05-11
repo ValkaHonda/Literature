@@ -23,6 +23,10 @@ export default class TestsScreen extends Component {
           title="Ранглисти"
           onPress={() => this.props.navigation.push('RangLists')}
         />
+        <Button
+          title="Изход"
+          onPress={() => this.props.navigation.navigate('Home')}
+        />
         
       </ImageBackground>
     );

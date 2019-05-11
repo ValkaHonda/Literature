@@ -4,12 +4,13 @@ import {
   StyleSheet, 
   Text, 
   View,
+  ActivityIndicator,
   ImageBackground,
   Button, 
   TextInput,
   AsyncStorage
 } from 'react-native';
-import LogIn from './../../components/loginComponent.js';
+import { login } from '../../services/HTTPService';
 import { StoreGlobal } from '../../../App.js';
 
 
@@ -23,37 +24,8 @@ export default class HomeScreen extends Component {
     pass: '',
     token: '',
     id: '',
-    login: false
+    loading: false,
   };
-/*
-  async componentWillMount(){
-    const loginString = await AsyncStorage.getItem("login");
-    const token = await AsyncStorage.getItem("token");
-    const id = await AsyncStorage.getItem("id");
-    const loginBoolean = !!loginString;
-    if(loginBoolean === true) 
-    {
-      
-      StoreGlobal({
-        type:'set', 
-        key:'login', 
-        value: `${loginBoolean}`
-      });
-      StoreGlobal({
-        type:'set', 
-        key:'token', 
-        value: `${token}`
-      });
-      StoreGlobal({
-        type:'set', 
-        key:'id', 
-        value: `${id}`
-      });
-    //  Alert.alert(StoreGlobal({type: 'get', key: 'token'}));
-    }
-    
-}
-*/
 
 
   onEmailChange = e => {
@@ -65,24 +37,42 @@ export default class HomeScreen extends Component {
         pass: e.target.value,
       });
   };
+  _storeData = async (token) => {
+    try {
+      await AsyncStorage.setItem('token', token);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+  _retrieveData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      if (value !== null) {
+        // We have data!!
+        return value;
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
 
   sendRequest = () => {
-      fetch(`${this.url.base}/authenticate`,{
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(this.state), // data can be `string` or {object}!
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      }).then((response) => response.json())
+    this.setState({loading:true});
+      login(this.state)
       .then((response) => {
+        this.setState({loading:false});
         this.setState({ token: response.token });
         StoreGlobal({
           type:'set', 
           key:'token', 
-          value: `${response.token}`});
+          value: `${response.token}`
+        });
+        
+
         this.props.navigation.push('Details');
       }).catch(
         (error) => {
+          this.setState({loading:false});
           console.log("User log-in error!")
           console.log(error);
         }
@@ -91,20 +81,14 @@ export default class HomeScreen extends Component {
   onLogInButtonPress = async () => {
     await this.sendRequest();
   };
-  // static navigationOptions = {
-  //   title: 'Българска литература',
-  //   headerStyle: {
-  //     backgroundColor: '#f4511e',
-  //   },
-  //   headerTintColor: '#fff',
-  //   headerTitleStyle: {
-  //     fontWeight: 'bold',
-  //     alignSelf: 'center', 
-  //     textAlign:"center",
-  //     flex:1,
-  //   },
-  // };
   render() {
+    if(this.state.loading){
+      return (
+        <View style={[styles.container, styles.horizontal]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      );
+    }
     return (
     
       <ImageBackground 
