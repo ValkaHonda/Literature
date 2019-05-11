@@ -1,6 +1,6 @@
 # Literature
 
-Crossplatform mobile application for bulgarian literature.
+Crossplatform mobile application for Bulgarian literature.
 
 ## Used Technologies
 
