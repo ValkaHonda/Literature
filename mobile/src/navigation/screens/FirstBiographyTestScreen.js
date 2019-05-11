@@ -83,46 +83,10 @@ this.setState({
 
 renderAnswers = (answers, questionIndex) => 
 {
-  return answers.map(
-    (answer, index) => 
-    {
-      return (
-        <View>
-          
-          <Button
-          color = {(this.state.buttonClicks[questionIndex] === index+1)?"#39A78E":"#FE434C"}
-          onPress = {() => {
-            Alert.alert('A: '+index+' Q: '+questionIndex);
-            const buttons = this.state.buttonClicks;
-            buttons[questionIndex] = index + 1;
-            this.setState({
-              buttonClicks: buttons, 
-              chosenAnswer: index + 1
-              });
-          }}
-            title = {answer}
-
-          />
-          <Text style={{fontSize: 2}}></Text>
-        </View>
-      );
-    }
-  ); 
+  console.log(answers,questionIndex);
+  console.log(answers,questionIndex);
+  console.log(answers,questionIndex);
 };
-
-renderQuestions = (questions) => 
-{
-  return questions.map(
-    (question, questionIndex) => {
-      return (
-        <View>
-          <Text style={{textAlignVertical: "center", textAlign: "center", fontWeight: 'bold'}}>{question.key}. {question.question}</Text>
-          {this.renderAnswers(question.answers, questionIndex)}
-        </View>
-      );
-    }
-  );
-}; 
 
   render() {
     if (this.state.loading) 
@@ -138,10 +102,9 @@ renderQuestions = (questions) =>
         source={require('../../images/Moleskin.png')}
         style={[{width: '100%', height: '100%'}]}>
           <ScrollView>
-            <Text>{JSON.stringify(this.state.buttonClicks)}</Text>
-            {this.renderQuestions(this.state.array)}
+            {console.log(this.state.array)}
           </ScrollView> 
-        </ImageBackground>
+        </ImageBackground>         
       );
     }
   }
