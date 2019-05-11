@@ -8,7 +8,13 @@ import {getUserInfo} from '../../services/HTTPService';
 
 export default class TestsScreen extends Component {
 
-
+  _storeData = async (key,item) => {
+    try {
+      await AsyncStorage.setItem(key, item);
+    } catch (error) {
+      // Error saving data
+    }
+  };
 
   render() {
     return (
@@ -25,7 +31,11 @@ export default class TestsScreen extends Component {
         />
         <Button
           title="Изход"
-          onPress={() => this.props.navigation.navigate('Home')}
+          onPress={() => {
+              this.props.navigation.navigate('Home');
+              this._storeData('save','true');
+            }
+          }
         />
         
       </ImageBackground>

@@ -27,6 +27,25 @@ export default class HomeScreen extends Component {
     loading: false,
   };
 
+  constructor(props){
+    super(props);
+    this._retrieveData('save').then(
+      async (res)=>{
+        if(!!res){
+          const email = await this._retrieveData('email');
+          const pass = await this._retrieveData('pass');
+          this.setState({
+            email: email,
+            pass: pass,
+          },()=>
+          this.sendRequest({
+            email: email,
+            pass: pass,
+          }));
+        }
+      }
+    ).catch(console.log);
+  }
 
   onEmailChange = e => {
       this.setState({ email: e.target.value });
@@ -37,16 +56,16 @@ export default class HomeScreen extends Component {
         pass: e.target.value,
       });
   };
-  _storeData = async (token) => {
+  _storeData = async (key,item) => {
     try {
-      await AsyncStorage.setItem('token', token);
+      await AsyncStorage.setItem(key, item);
     } catch (error) {
       // Error saving data
     }
   };
-  _retrieveData = async () => {
+  _retrieveData = async (item) => {
     try {
-      const value = await AsyncStorage.getItem('token');
+      const value = await AsyncStorage.getItem(item);
       if (value !== null) {
         // We have data!!
         return value;
@@ -61,20 +80,24 @@ export default class HomeScreen extends Component {
       login(this.state)
       .then((response) => {
         this.setState({loading:false});
+        if(JSON.stringify(response).includes("Bad credentials")){
+          Alert.alert("Няма такъв потребител.");
+          return;
+        }
         this.setState({ token: response.token });
         StoreGlobal({
           type:'set', 
           key:'token', 
           value: `${response.token}`
         });
-        
-
+        this._storeData('email',this.state.email);
+        this._storeData('pass',this.state.pass);
+        this._storeData('save','true');
         this.props.navigation.push('Details');
       }).catch(
         (error) => {
           this.setState({loading:false});
-          console.log("User log-in error!")
-          console.log(error);
+          Alert.alert('Wi-fi error');
         }
       );
   };
