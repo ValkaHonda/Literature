@@ -27,8 +27,9 @@ export default class FirstBiographyTestScreen extends Component {
     id: 0,
     loading: true,
     array: [],
-    buttonClicks: [],
-    chosenAnswer: 0
+    answers: [],
+    chosenAnswer: 0,
+    currentQuestionIndex: 0,
 };
 
   constructor(props){
@@ -81,13 +82,34 @@ this.setState({
       });
   }
 
-renderAnswers = (answers, questionIndex) => 
+renderAnswers = (questions, questionIndex) => 
 {
-  console.log(answers,questionIndex);
-  console.log(answers,questionIndex);
-  console.log(answers,questionIndex);
+  questionIndex = Number(questionIndex);
+  const currentQuestion = questions[questionIndex];
+  
+  return (
+    <View
+      style={styles.container}>
+      <Text>{currentQuestion.question}</Text>
+      <Button
+          title={currentQuestion.answers[0]}
+          onPress={() => this.state.answers.push(1)}
+      />
+      <Button
+          title={currentQuestion.answers[1]}
+          onPress={() => this.state.answers.push(2)}
+      />
+      <Button
+          title={currentQuestion.answers[2]}
+          onPress={() => this.state.answers.push(3)}
+      />
+      <Button
+          title={currentQuestion.answers[3]}
+          onPress={() => this.state.answers.push(4)}
+      />
+    </View>
+  );
 };
-
   render() {
     if (this.state.loading) 
     {
@@ -100,9 +122,21 @@ renderAnswers = (answers, questionIndex) =>
       return (
         <ImageBackground 
         source={require('../../images/Moleskin.png')}
-        style={[{width: '100%', height: '100%'}]}>
+        style={[{width: '100%', height: '100%'},styles.container]}>
           <ScrollView>
-            {console.log(this.state.array)}
+            { this.renderAnswers(this.state.array,this.state.currentQuestionIndex) }
+            <Button
+              style={{marginTop: 10}}
+              title="Следващия въпрос:"
+              onPress={() => {
+                const newIndex = this.state.currentQuestionIndex+1;
+                this.setState({currentQuestionIndex: newIndex});
+                if(newIndex >= this.state.array.length){
+                  
+                  Alert.alert('Done');
+                }
+              }}
+            />    
           </ScrollView> 
         </ImageBackground>         
       );
@@ -114,7 +148,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'column',
-    backgroundColor: '#ffff00',
     justifyContent: 'space-between',
   },
 });
