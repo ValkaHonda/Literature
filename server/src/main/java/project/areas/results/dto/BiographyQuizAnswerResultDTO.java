@@ -1,15 +1,16 @@
 package project.areas.results.dto;
 
+
 import java.util.List;
 
-public class BiographyQuizAnswerQuestionsDTO {
+public class BiographyQuizAnswerResultDTO {
     private List<String> answers;
 
-    public BiographyQuizAnswerQuestionsDTO(List<String> answers) {
-        this.answers = answers;
+    public BiographyQuizAnswerResultDTO() {
     }
 
-    public BiographyQuizAnswerQuestionsDTO() {
+    public BiographyQuizAnswerResultDTO(List<String> answers) {
+        this.answers = answers;
     }
 
     public List<String> getAnswers() {

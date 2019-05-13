@@ -4,14 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import project.areas.results.dto.ShowBiographyQuizResultDTO;
 import project.areas.results.dto.ShowWorkResultDTO;
 import project.areas.users.entities.Role;
+import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
 import project.areas.users.services.RoleService;
 import project.areas.users.services.UserService;
 
 import java.security.Principal;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -50,6 +53,12 @@ public class UserController {
         System.out.println("-----------------");
         System.out.println(principal.getName());
         return authentication.getName()+"$"+principal.getName();
+
+    }
+    @GetMapping("/biography-result")
+    public List<ShowBiographyQuizResultDTO> getAllUsersBiographyQuizResults(final Principal principal){
+        User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
+        return this.userService.findUserBiographyQuizResults(loggedUser);
     }
 
 }
