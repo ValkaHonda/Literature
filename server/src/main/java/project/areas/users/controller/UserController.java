@@ -47,12 +47,10 @@ public class UserController {
         return this.userService.getIDByUsername(usernameBindingModel);}
 
     @GetMapping("/work-result")
-    public String getUserWorkQuizResults(Authentication authentication, Principal principal)
+    public List<ShowWorkResultDTO> getUserWorkQuizResults(final Principal principal)
     {
-        System.out.println(authentication.getName());
-        System.out.println("-----------------");
-        System.out.println(principal.getName());
-        return authentication.getName()+"$"+principal.getName();
+        User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
+        return this.userService.findUserWorkResults(loggedUser);
 
     }
     @GetMapping("/biography-result")

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import project.areas.questionnaires.dto.ShowAuthorQuizDTO;
 import project.areas.questionnaires.entities.AuthorQuiz;
 import project.areas.questionnaires.entities.BiographyQuestion;
+import project.areas.questionnaires.entities.WorkQuestion;
 import project.areas.questionnaires.repositories.AuthorQuizRepository;
 
 import java.util.ArrayList;
@@ -37,6 +38,16 @@ public class AuthorQuizServiceImpl implements AuthorQuizService{
     @Override
     public AuthorQuiz getAuthorQuizByID(Integer id) {
         return this.authorQuizRepository.findOne(id);
+    }
+
+    @Override
+    public List<BiographyQuestion> findAllBiographyQuestionsByQuiz(AuthorQuiz authorQuiz) {
+        return authorQuiz.getBiographyQuestions();
+    }
+
+    @Override
+    public List<WorkQuestion> findAllWorkQuistionsByQuiz(AuthorQuiz authorQuiz) {
+        return authorQuiz.getWorkQuestions();
     }
 
     private ShowAuthorQuizDTO entityToDTO(final AuthorQuiz authorQuizEntity)

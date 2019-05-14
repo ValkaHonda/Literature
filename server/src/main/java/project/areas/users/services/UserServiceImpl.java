@@ -4,7 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import project.areas.results.dto.ShowBiographyQuizResultDTO;
+import project.areas.results.dto.ShowWorkResultDTO;
 import project.areas.results.entities.BiographyQuizResult;
+import project.areas.results.entities.WorkQuizResult;
 import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
@@ -51,6 +53,13 @@ public class UserServiceImpl implements UserService{
         List<BiographyQuizResult> resultEntities = user.getBiographyQuizResults();
         return this.toDTOList(resultEntities);
     }
+
+    @Override
+    public List<ShowWorkResultDTO> findUserWorkResults(User user) {
+        List<WorkQuizResult> resultEntities = user.getWorkQuizResults();
+        return this.toWorkDTOs(resultEntities);
+    }
+
     private ShowBiographyQuizResultDTO biographyResultToDTO(final BiographyQuizResult resultEntity){
         return new ShowBiographyQuizResultDTO(resultEntity.getId(),
                 resultEntity.getSuccessPercentage(),
@@ -60,6 +69,17 @@ public class UserServiceImpl implements UserService{
         List<ShowBiographyQuizResultDTO> resultDTOS = new ArrayList<>();
         for (BiographyQuizResult resultEntity : resultEntities) {
             resultDTOS.add(this.biographyResultToDTO(resultEntity));
+        }
+        return resultDTOS;
+    }
+    private ShowWorkResultDTO workResultEntityToDTO(final WorkQuizResult workQuizResult){
+        return new ShowWorkResultDTO(workQuizResult.getId(),workQuizResult.getSuccessPercentage(),
+                workQuizResult.getUser().getUsername());
+    }
+    private List<ShowWorkResultDTO> toWorkDTOs(final List<WorkQuizResult> workQuizResults){
+        List<ShowWorkResultDTO> resultDTOS = new ArrayList<>();
+        for (WorkQuizResult workQuizResult : workQuizResults) {
+            resultDTOS.add(this.workResultEntityToDTO(workQuizResult));
         }
         return resultDTOS;
     }

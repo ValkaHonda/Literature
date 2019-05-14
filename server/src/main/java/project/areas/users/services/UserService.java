@@ -1,6 +1,7 @@
 package project.areas.users.services;
 
 import project.areas.results.dto.ShowBiographyQuizResultDTO;
+import project.areas.results.dto.ShowWorkResultDTO;
 import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
@@ -13,4 +14,5 @@ public interface UserService {
     String getIDByUsername(final UsernameBindingModel usernameBindingModel);
     User findUserEntityByUserName(final String username);
     List<ShowBiographyQuizResultDTO> findUserBiographyQuizResults(final User user);
+    List<ShowWorkResultDTO> findUserWorkResults(final User user);
 }

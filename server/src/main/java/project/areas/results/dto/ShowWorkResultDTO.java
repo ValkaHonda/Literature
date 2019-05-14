@@ -4,13 +4,15 @@ public class ShowWorkResultDTO
 {
     private Integer id;
     private Double successPercentage;
+    private String username;
 
     public ShowWorkResultDTO() {
     }
 
-    public ShowWorkResultDTO(Integer id, Double successPercentage) {
+    public ShowWorkResultDTO(Integer id, Double successPercentage, String username) {
         this.id = id;
         this.successPercentage = successPercentage;
+        this.username = username;
     }
 
     public Integer getId() {
@@ -27,5 +29,13 @@ public class ShowWorkResultDTO
 
     public void setSuccessPercentage(Double successPercentage) {
         this.successPercentage = successPercentage;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
