@@ -43,9 +43,11 @@ public class AuthorServiceImpl implements AuthorService{
 
     private ShowAuthorDTO entityToDTO(Author author){
         ShowAuthorDTO newAuthorDTO = new ShowAuthorDTO(
+                author.getId(),
                 author.getFirstName(),
                 author.getLastName(),
-                author.getBiography()
+                author.getBiography(),
+                author.getAvatarURL()
         );
         return newAuthorDTO;
     }

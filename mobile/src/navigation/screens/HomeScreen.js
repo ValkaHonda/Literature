@@ -4,11 +4,13 @@ import {
   StyleSheet, 
   Text, 
   View,
+  ActivityIndicator,
+  ImageBackground,
   Button, 
   TextInput,
   AsyncStorage
 } from 'react-native';
-import LogIn from './../../components/loginComponent.js';
+import { login } from '../../services/HTTPService';
 import { StoreGlobal } from '../../../App.js';
 
 
@@ -22,39 +24,28 @@ export default class HomeScreen extends Component {
     pass: '',
     token: '',
     id: '',
-    login: false
+    loading: false,
   };
 
-  async componentWillMount(){
-    const loginString = await AsyncStorage.getItem("login");
-    const token = await AsyncStorage.getItem("token");
-    const id = await AsyncStorage.getItem("id");
-    const loginBoolean = !!loginString;
-    if(loginBoolean === true) 
-    {
-      
-      StoreGlobal({
-        type:'set', 
-        key:'login', 
-        value: `${loginBoolean}`
-      });
-      StoreGlobal({
-        type:'set', 
-        key:'token', 
-        value: `${token}`
-      });
-      StoreGlobal({
-        type:'set', 
-        key:'id', 
-        value: `${id}`
-      });
-    //  Alert.alert(StoreGlobal({type: 'get', key: 'token'}));
-    }
-}
-
-componentDidMount(){
-  
-}
+  constructor(props){
+    super(props);
+    this._retrieveData('save').then(
+      async (res)=>{
+        if(!!res){
+          const email = await this._retrieveData('email');
+          const pass = await this._retrieveData('pass');
+          this.setState({
+            email: email,
+            pass: pass,
+          },()=>
+          this.sendRequest({
+            email: email,
+            pass: pass,
+          }));
+        }
+      }
+    ).catch(console.log);
+  }
 
   onEmailChange = e => {
       this.setState({ email: e.target.value });
@@ -65,107 +56,122 @@ componentDidMount(){
         pass: e.target.value,
       });
   };
+  _storeData = async (key,item) => {
+    try {
+      await AsyncStorage.setItem(key, item);
+    } catch (error) {
+      // Error saving data
+    }
+  };
+  _retrieveData = async (item) => {
+    try {
+      const value = await AsyncStorage.getItem(item);
+      if (value !== null) {
+        // We have data!!
+        return value;
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
 
   sendRequest = () => {
-      fetch(`${this.url.base}/authenticate`,{
-        method: 'POST', // or 'PUT'
-        body: JSON.stringify(this.state), // data can be `string` or {object}!
-        headers:{
-          'Content-Type': 'application/json'
-        }
-      }).then((response) => response.json())
+    this.setState({loading:true});
+      login(this.state)
       .then((response) => {
+        this.setState({loading:false});
+        if(JSON.stringify(response).includes("Bad credentials")){
+          Alert.alert("Няма такъв потребител.");
+          return;
+        }
         this.setState({ token: response.token });
-      }).then(
-        () => {
-          fetch(`${this.url.base}/users/id`,{
-            method: 'POST', // or 'PUT'
-            body: JSON.stringify({username: `${this.state.email}`}), // data can be `string` or {object}!
-            headers:{
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${this.state.token}`
-            }
-          }).then((response) => response.json())
-          .then(async (response) => {
-            //AsyncStorage.setItem('id',JSON.stringify(response)); // In the next version of React Native this will be deprecated
-            await this.setState({ id: JSON.stringify(response)});
-            await this.setState({ login: true});
-            await AsyncStorage.setItem("id", this.state.id);
-            await AsyncStorage.setItem("token", this.state.token);
-            await AsyncStorage.setItem("login", JSON.stringify(this.state.login));
-            StoreGlobal({
-              type:'set', 
-              key:'id', 
-              value: `${this.state.id}`});
-            StoreGlobal({
-              type:'set', 
-              key:'login', 
-              value: `${this.state.login}`});
-              
-              this.props.navigation.push('Details');
-          })
-          .catch((error) => {
-            Alert.alert("ID error");
-          });
-      }
-
-      )
-      .catch((error) => {
-        Alert.alert("error");
-      });
+        StoreGlobal({
+          type:'set', 
+          key:'token', 
+          value: `${response.token}`
+        });
+        this._storeData('email',this.state.email);
+        this._storeData('pass',this.state.pass);
+        this._storeData('save','true');
+        this.props.navigation.push('Details');
+      }).catch(
+        (error) => {
+          this.setState({loading:false});
+          Alert.alert('Wi-fi error');
+        }
+      );
   };
   onLogInButtonPress = async () => {
     await this.sendRequest();
   };
-  static navigationOptions = {
-    title: 'Home',
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      alignSelf: 'center', 
-      textAlign:"center",
-      flex:1,
-    },
-  };
   render() {
+    if(this.state.loading){
+      return (
+        <View style={[styles.container, styles.horizontal]}>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      );
+    }
     return (
-      <View style={styles.container}>
-        <Text>Typical Log-In Screen</Text>
-        <Text>Email:</Text>
+    
+      <ImageBackground 
+      source={require('../../images/Book-Cover.jpg')}
+      style={[{width: '100%', height: '100%'}, styles.container]}
+        >
+        <Text style={styles.baseText}>Не се гаси туй,</Text>
+        <Text style={styles.baseText}>що не гасне.</Text>
+        <Text></Text>
+        <Text></Text>
+        <Text></Text>
+
         <TextInput
             style={styles.textBox}
             onChangeText={(emailInput) => this.setState({email:emailInput})}
+            placeholder = "Потребителско име"
+            placeholderTextColor = "rgba(0, 0, 0, 0.3)"
+            textAlign={'center'}
+            selectionColor={"rgba(0, 0, 0, 0.4)"}
         />
-        <Text>Password:</Text>
+        <Text></Text>
         <TextInput
             style={styles.textBox}
             onChangeText={(passInput) => this.setState({pass:passInput})}
             secureTextEntry={true}
+            placeholder = "Парола"
+            placeholderTextColor = "rgba(0, 0, 0, 0.3)"
+            textAlign={'center'}
+            selectionColor={"rgba(0, 0, 0, 0.4)"}
         />
-        <Button
-          title="Log In"
-          onPress={this.onLogInButtonPress}
+        <Text></Text>
+        <Button 
+
+
+          color = "rgba(52, 52, 52, 0.7)"
+          title = "Вход"
+          onPress = {this.onLogInButtonPress}
         />
-      </View>
+      </ImageBackground>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  baseText: {
+    fontFamily: 'HilandarskiUstav5',
+    fontSize: 30
+    },
+
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffff00',
   },
   textBox: {
     height: 40, 
     width: 200,
-    borderColor: 'gray', 
+    borderColor: 'rgb(104, 0, 0)', 
     borderWidth: 1, 
-    backgroundColor: "#ffffff",
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
 },
+
 });

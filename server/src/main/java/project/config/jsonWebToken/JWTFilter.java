@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
+import project.areas.users.entities.User;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -37,6 +38,11 @@ public class JWTFilter extends GenericFilterBean {
             String jwt = resolveToken(httpServletRequest);
             if (StringUtils.hasText(jwt) && this.tokenProvider.validateToken(jwt)) {
                 Authentication authentication = this.tokenProvider.getAuthentication(jwt);
+                User user = (User)authentication.getPrincipal();
+                System.out.println(user.getEmail()+"1996");
+                System.out.println(user.getRoles().toString());
+
+
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
             filterChain.doFilter(servletRequest, servletResponse);

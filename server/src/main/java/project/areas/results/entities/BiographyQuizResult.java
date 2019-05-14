@@ -17,6 +17,12 @@ public class BiographyQuizResult
 
     public BiographyQuizResult() {}
 
+    public BiographyQuizResult(Double successPercentage, User user, BiographyQuiz biographyQuiz) {
+        this.successPercentage = successPercentage;
+        this.user = user;
+        this.biographyQuiz = biographyQuiz;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {

@@ -15,6 +15,12 @@ public class AuthorQuizResult {
 
     public AuthorQuizResult() { }
 
+    public AuthorQuizResult(Double successPercentage, User user, AuthorQuiz authorQuiz) {
+        this.successPercentage = successPercentage;
+        this.user = user;
+        this.authorQuiz = authorQuiz;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {

@@ -2,12 +2,27 @@ package project.areas.users.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import project.areas.authors.entities.Author;
+import project.areas.questionnaires.dto.ShowAuthorQuizDTO;
+import project.areas.results.dto.ShowAuthorResultDTO;
+import project.areas.results.dto.ShowBiographyQuizResultDTO;
+import project.areas.results.dto.ShowWorkResultDTO;
 import project.areas.users.entities.Role;
+import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.AuthorRankDTO;
+import project.areas.users.models.dto.BiographyRankDTO;
+import project.areas.users.models.dto.ShowUserDTO;
+import project.areas.users.models.dto.WorkRankDTO;
 import project.areas.users.services.RoleService;
 import project.areas.users.services.UserService;
+
+import java.security.Principal;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -38,4 +53,35 @@ public class UserController {
     {
         System.out.println("Hello, World!");
         return this.userService.getIDByUsername(usernameBindingModel);}
+
+    @GetMapping("/work-result")
+    public List<ShowWorkResultDTO> getUserWorkQuizResults(final Principal principal)
+    {
+        User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
+        return this.userService.findUserWorkResults(loggedUser);
+
+    }
+    @GetMapping("/biography-result")
+    public List<ShowBiographyQuizResultDTO> getAllUsersBiographyQuizResults(final Principal principal){
+        User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
+        return this.userService.findUserBiographyQuizResults(loggedUser);
+    }
+    @GetMapping("/author-result")
+    public List<ShowAuthorResultDTO> getAllUsersAuthorsQuizResults(final Principal principal){
+        User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
+        return this.userService.findUserAuthorResult(loggedUser);
+    }
+    @GetMapping("/rank/biography")
+    public List<BiographyRankDTO> getUsersBiographyRanks(){
+        return this.userService.getUsersBiographyRanks();
+    }
+    @GetMapping("/rank/work")
+    public List<WorkRankDTO> getUsersWorkRanks(){
+        return this.userService.getUsersWorkRanks();
+    }
+    @GetMapping("/rank/author")
+    public List<AuthorRankDTO> getUsersAuthorRanks(){
+        return this.userService.getUsersAuthorRanks();
+    }
+
 }
