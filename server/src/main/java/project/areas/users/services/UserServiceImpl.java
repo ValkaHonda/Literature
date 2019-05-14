@@ -3,6 +3,8 @@ package project.areas.users.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import project.areas.authors.entities.Author;
+import project.areas.authors.entities.Work;
 import project.areas.results.dto.ShowAuthorResultDTO;
 import project.areas.results.dto.ShowBiographyQuizResultDTO;
 import project.areas.results.dto.ShowWorkResultDTO;
@@ -13,8 +15,10 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.AuthorRankDTO;
 import project.areas.users.models.dto.BiographyRankDTO;
 import project.areas.users.models.dto.ShowUserDTO;
+import project.areas.users.models.dto.WorkRankDTO;
 import project.areas.users.repositories.UserRepository;
 
 import java.util.*;
@@ -78,7 +82,76 @@ public class UserServiceImpl implements UserService{
             BiographyRankDTO dto = new BiographyRankDTO(entityToUserDTO(currentUser),avgPercent);
             ranks.add(dto);
         }
-        return ranks;
+        return sortBiographyRankDtOs(ranks);
+    }
+
+    @Override
+    public List<WorkRankDTO> getUsersWorkRanks() {
+        List<WorkRankDTO> ranks = new ArrayList<>();
+        List<User> users = this.userRepository.findAll();
+        for (User currentUser : users) {
+            List<WorkQuizResult> quizResults = currentUser.getWorkQuizResults();
+            Double avgPercent = getAvgWorkPercent(quizResults);
+            WorkRankDTO dto = new WorkRankDTO(this.entityToUserDTO(currentUser),avgPercent);
+            ranks.add(dto);
+        }
+        return this.sortWorkRankDtOs(ranks);
+    }
+
+    @Override
+    public List<AuthorRankDTO> getUsersAuthorRanks() {
+        List<AuthorRankDTO> ranks = new ArrayList<>();
+        List<User> users = this.userRepository.findAll();
+        for (User currentUser : users) {
+            List<AuthorQuizResult> quizResults = currentUser.getAuthorQuizResults();
+            Double avgPercent = this.getAvgAuthorPercent(quizResults);
+            AuthorRankDTO dto = new AuthorRankDTO(this.entityToUserDTO(currentUser),avgPercent);
+            ranks.add(dto);
+        }
+        return this.sortAuthorRankDtOs(ranks);
+    }
+
+    private List<AuthorRankDTO> sortAuthorRankDtOs(List<AuthorRankDTO> dtos){
+        for (int i = 0; i < dtos.size(); i++) {
+            for (int j = 0; j < dtos.size()-1; j++) {
+                AuthorRankDTO first = dtos.get(i);
+                AuthorRankDTO second = dtos.get(i+1);
+                //ASC
+                if(first.getAvgSuccess()<second.getAvgSuccess()){
+                    dtos.set(i,second);
+                    dtos.set(i+1,first);
+                }
+            }
+        }
+        return dtos;
+    }
+    private List<BiographyRankDTO> sortBiographyRankDtOs(List<BiographyRankDTO> dtos){
+        for (int i = 0; i < dtos.size(); i++) {
+            for (int j = 0; j < dtos.size()-1; j++) {
+                BiographyRankDTO first = dtos.get(i);
+                BiographyRankDTO second = dtos.get(i+1);
+                //ASC
+                if(first.getAvgSuccess()<second.getAvgSuccess()){
+                    dtos.set(i,second);
+                    dtos.set(i+1,first);
+                }
+            }
+        }
+        return dtos;
+    }
+    private List<WorkRankDTO> sortWorkRankDtOs(List<WorkRankDTO> dtos){
+        for (int i = 0; i < dtos.size(); i++) {
+            for (int j = 0; j < dtos.size()-1; j++) {
+                WorkRankDTO first = dtos.get(i);
+                WorkRankDTO second = dtos.get(i+1);
+                //ASC
+                if(first.getAvgSuccess()<second.getAvgSuccess()){
+                    dtos.set(i,second);
+                    dtos.set(i+1,first);
+                }
+            }
+        }
+        return dtos;
     }
     private ShowUserDTO entityToUserDTO(User user){
         return new ShowUserDTO(user.getId(),user.getEmail(),user.getAvatarURL());
@@ -86,6 +159,20 @@ public class UserServiceImpl implements UserService{
     private Double getAvgBiographyPercent(List<BiographyQuizResult> results){
         double avg = 0;
         for (BiographyQuizResult result : results) {
+            avg += result.getSuccessPercentage();
+        }
+        return avg/results.size();
+    }
+    private Double getAvgWorkPercent(List<WorkQuizResult> results){
+        double avg = 0;
+        for (WorkQuizResult result : results) {
+            avg += result.getSuccessPercentage();
+        }
+        return avg/results.size();
+    }
+    private Double getAvgAuthorPercent(List<AuthorQuizResult> results){
+        double avg = 0;
+        for (AuthorQuizResult result : results) {
             avg += result.getSuccessPercentage();
         }
         return avg/results.size();

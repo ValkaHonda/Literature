@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import project.areas.authors.entities.Author;
 import project.areas.questionnaires.dto.ShowAuthorQuizDTO;
 import project.areas.results.dto.ShowAuthorResultDTO;
 import project.areas.results.dto.ShowBiographyQuizResultDTO;
@@ -12,8 +13,10 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.AuthorRankDTO;
 import project.areas.users.models.dto.BiographyRankDTO;
 import project.areas.users.models.dto.ShowUserDTO;
+import project.areas.users.models.dto.WorkRankDTO;
 import project.areas.users.services.RoleService;
 import project.areas.users.services.UserService;
 
@@ -73,12 +76,12 @@ public class UserController {
         return this.userService.getUsersBiographyRanks();
     }
     @GetMapping("/rank/work")
-    public Map<ShowUserDTO,Double> getUsersWorkRanks(){
-        return null; // to do
+    public List<WorkRankDTO> getUsersWorkRanks(){
+        return this.userService.getUsersWorkRanks();
     }
     @GetMapping("/rank/author")
-    public Map<ShowUserDTO,Double> getUsersAuthorRanks(){
-        return null; // to do
+    public List<AuthorRankDTO> getUsersAuthorRanks(){
+        return this.userService.getUsersAuthorRanks();
     }
 
 }
