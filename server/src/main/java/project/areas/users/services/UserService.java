@@ -1,5 +1,6 @@
 package project.areas.users.services;
 
+import project.areas.results.dto.ShowAuthorResultDTO;
 import project.areas.results.dto.ShowBiographyQuizResultDTO;
 import project.areas.results.dto.ShowWorkResultDTO;
 import project.areas.users.entities.Role;
@@ -15,4 +16,5 @@ public interface UserService {
     User findUserEntityByUserName(final String username);
     List<ShowBiographyQuizResultDTO> findUserBiographyQuizResults(final User user);
     List<ShowWorkResultDTO> findUserWorkResults(final User user);
+    List<ShowAuthorResultDTO> findUserAuthorResult(final User user);
 }

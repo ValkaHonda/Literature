@@ -3,8 +3,10 @@ package project.areas.users.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import project.areas.results.dto.ShowAuthorResultDTO;
 import project.areas.results.dto.ShowBiographyQuizResultDTO;
 import project.areas.results.dto.ShowWorkResultDTO;
+import project.areas.results.entities.AuthorQuizResult;
 import project.areas.results.entities.BiographyQuizResult;
 import project.areas.results.entities.WorkQuizResult;
 import project.areas.users.entities.Role;
@@ -58,6 +60,23 @@ public class UserServiceImpl implements UserService{
     public List<ShowWorkResultDTO> findUserWorkResults(User user) {
         List<WorkQuizResult> resultEntities = user.getWorkQuizResults();
         return this.toWorkDTOs(resultEntities);
+    }
+
+    @Override
+    public List<ShowAuthorResultDTO> findUserAuthorResult(User user) {
+        List<AuthorQuizResult> authorResultsEntities = user.getAuthorQuizResults();
+        return this.authorEntitiesToDTOS(authorResultsEntities);
+    }
+    private ShowAuthorResultDTO authorEntityToDTO(final AuthorQuizResult authorQuizResult){
+        return new ShowAuthorResultDTO(authorQuizResult.getId(),authorQuizResult.getSuccessPercentage(),
+                authorQuizResult.getUser().getUsername());
+    }
+    private List<ShowAuthorResultDTO> authorEntitiesToDTOS(final List<AuthorQuizResult> entities){
+        List<ShowAuthorResultDTO> dtos = new ArrayList<>();
+        for (AuthorQuizResult entity : entities) {
+            dtos.add(this.authorEntityToDTO(entity));
+        }
+        return dtos;
     }
 
     private ShowBiographyQuizResultDTO biographyResultToDTO(final BiographyQuizResult resultEntity){

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import project.areas.questionnaires.dto.ShowAuthorQuizDTO;
+import project.areas.results.dto.ShowAuthorResultDTO;
 import project.areas.results.dto.ShowBiographyQuizResultDTO;
 import project.areas.results.dto.ShowWorkResultDTO;
 import project.areas.users.entities.Role;
@@ -57,6 +59,11 @@ public class UserController {
     public List<ShowBiographyQuizResultDTO> getAllUsersBiographyQuizResults(final Principal principal){
         User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
         return this.userService.findUserBiographyQuizResults(loggedUser);
+    }
+    @GetMapping("/author-result")
+    public List<ShowAuthorResultDTO> getAllUsersAuthorsQuizResults(final Principal principal){
+        User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
+        return this.userService.findUserAuthorResult(loggedUser);
     }
 
 }
