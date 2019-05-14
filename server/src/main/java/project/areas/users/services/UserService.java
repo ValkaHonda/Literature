@@ -20,4 +20,6 @@ public interface UserService {
     List<ShowWorkResultDTO> findUserWorkResults(final User user);
     List<ShowAuthorResultDTO> findUserAuthorResult(final User user);
     Map<ShowUserDTO,Double> getUsersBiographyRanks();
+//    Map<ShowUserDTO,Double> getUsersWorkRanks();
+//    Map<ShowUserDTO,Double> getUsersAuthorRanks();
 }

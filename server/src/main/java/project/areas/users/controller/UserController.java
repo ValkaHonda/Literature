@@ -71,5 +71,13 @@ public class UserController {
     public Map<ShowUserDTO,Double> getUsersBiographyRanks(){
         return this.userService.getUsersBiographyRanks();
     }
+    @GetMapping("/rank/work")
+    public Map<ShowUserDTO,Double> getUsersWorkRanks(){
+        return null; // to do
+    }
+    @GetMapping("/rank/author")
+    public Map<ShowUserDTO,Double> getUsersAuthorRanks(){
+        return null; // to do
+    }
 
 }
