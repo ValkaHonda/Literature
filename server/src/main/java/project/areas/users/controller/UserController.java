@@ -12,6 +12,7 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.BiographyRankDTO;
 import project.areas.users.models.dto.ShowUserDTO;
 import project.areas.users.services.RoleService;
 import project.areas.users.services.UserService;
@@ -68,7 +69,7 @@ public class UserController {
         return this.userService.findUserAuthorResult(loggedUser);
     }
     @GetMapping("/rank/biography")
-    public Map<ShowUserDTO,Double> getUsersBiographyRanks(){
+    public List<BiographyRankDTO> getUsersBiographyRanks(){
         return this.userService.getUsersBiographyRanks();
     }
     @GetMapping("/rank/work")

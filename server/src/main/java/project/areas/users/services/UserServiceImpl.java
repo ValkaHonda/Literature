@@ -13,6 +13,7 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.BiographyRankDTO;
 import project.areas.users.models.dto.ShowUserDTO;
 import project.areas.users.repositories.UserRepository;
 
@@ -68,23 +69,16 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public Map<ShowUserDTO, Double> getUsersBiographyRanks() {
-        Map<User,Double> rank = new HashMap<>();
+    public List<BiographyRankDTO> getUsersBiographyRanks() {
+        List<BiographyRankDTO> ranks = new ArrayList();
         List<User> users = this.userRepository.findAll();
         for (User currentUser : users) {
             List<BiographyQuizResult> quizResults = currentUser.getBiographyQuizResults();
             Double avgPercent = getAvgBiographyPercent(quizResults);
-            rank.put(currentUser,avgPercent);
+            BiographyRankDTO dto = new BiographyRankDTO(entityToUserDTO(currentUser),avgPercent);
+            ranks.add(dto);
         }
-        return toDTOBiographyMap(rank);
-    }
-
-    private Map<ShowUserDTO, Double> toDTOBiographyMap(Map<User,Double> entityMap){
-        Map<ShowUserDTO, Double> dtoMap = new HashMap<>();
-        for (Map.Entry<User, Double> userDoubleEntry : entityMap.entrySet()) {
-            dtoMap.put(entityToUserDTO(userDoubleEntry.getKey()),userDoubleEntry.getValue());
-        }
-        return dtoMap;
+        return ranks;
     }
     private ShowUserDTO entityToUserDTO(User user){
         return new ShowUserDTO(user.getId(),user.getEmail(),user.getAvatarURL());

@@ -7,6 +7,7 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.BiographyRankDTO;
 import project.areas.users.models.dto.ShowUserDTO;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public interface UserService {
     List<ShowBiographyQuizResultDTO> findUserBiographyQuizResults(final User user);
     List<ShowWorkResultDTO> findUserWorkResults(final User user);
     List<ShowAuthorResultDTO> findUserAuthorResult(final User user);
-    Map<ShowUserDTO,Double> getUsersBiographyRanks();
+    List<BiographyRankDTO> getUsersBiographyRanks();
 //    Map<ShowUserDTO,Double> getUsersWorkRanks();
 //    Map<ShowUserDTO,Double> getUsersAuthorRanks();
 }
