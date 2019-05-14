@@ -90,3 +90,13 @@ export const login = (state) => {
     }
   }).then((response) => response.json())
 };
+export const register = (state) => {
+  const URL = `https://thawing-eyrie-26509.herokuapp.com`;
+  return fetch(`${URL}/users/sign-up`,{
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(state), // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => response.json())
+};

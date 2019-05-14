@@ -9,47 +9,23 @@ import {
   Button, 
   TextInput,
 } from 'react-native';
-import { login } from '../../services/HTTPService';
+import { register } from '../../services/HTTPService';
 import { StoreGlobal } from '../../../App.js';
 import AsyncStorage from '@react-native-community/async-storage';
 
+export default class RegisterScreen extends Component {
 
-export default class HomeScreen extends Component {
-  url = {
-    base: 'https://thawing-eyrie-26509.herokuapp.com' // For production.
-    // base: 'localhost:8080' //-> For debugging.
-  };
   state = {
     email: '',
     pass: '',
-    token: '',
-    id: '',
+    passTwo:'',
     loading: false,
   };
 
   constructor(props){
     super(props);
-    
   }
 
-  componentWillMount(){
-    this._retrieveData('save').then(
-      async (res)=>{
-        if(!!res){
-          const email = await this._retrieveData('email');
-          const pass = await this._retrieveData('pass');
-          this.setState({
-            email: email,
-            pass: pass,
-          },()=>
-          this.sendRequest({
-            email: email,
-            pass: pass,
-          }));
-        }
-      }
-    ).catch(console.log);
-}
   onEmailChange = e => {
       this.setState({ email: e.target.value });
   };
@@ -57,6 +33,11 @@ export default class HomeScreen extends Component {
   onPassChange = e => {
       this.setState({
         pass: e.target.value,
+      });
+  };
+  onPassTwoChange = e => {
+      this.setState({
+        passTwo: e.target.value,
       });
   };
   _storeData = async (key,item) => {
@@ -80,35 +61,23 @@ export default class HomeScreen extends Component {
 
   sendRequest = () => {
     this.setState({loading:true});
-      login(this.state)
-      .then((response) => {
+      register(this.state).then((response) => {
+        this._storeData('save','false');
         this.setState({loading:false});
-        if(JSON.stringify(response).includes("Bad credentials")){
-          Alert.alert("Няма такъв потребител.");
-          return;
-        }
-        this.setState({ token: response.token });
-        StoreGlobal({
-          type:'set', 
-          key:'token', 
-          value: `${response.token}`
-        });
-        this._storeData('email',this.state.email);
-        this._storeData('pass',this.state.pass);
-        this._storeData('save','true');
-        this.props.navigation.push('Details');
+        this.props.navigation.navigate('Home');
       }).catch(
         (error) => {
+          this.props.navigation.navigate('Home');
           this.setState({loading:false});
-          Alert.alert('Wi-fi error');
         }
       );
   };
-  onLogInButtonPress = async () => {
-    await this.sendRequest();
-  };
   onRegisterButtonPress = () => {
-    this.props.navigation.navigate('Register');
+    if(this.state.pass !== this.state.passTwo){
+      Alert.alert('Passwords must match!');
+    } else {
+      this.sendRequest();
+    }
   };
   render() {
     if(this.state.loading){
@@ -149,18 +118,21 @@ export default class HomeScreen extends Component {
             selectionColor={"rgba(0, 0, 0, 0.4)"}
         />
         <Text></Text>
-        <View style={{flexDirection:'row'}}>
-          <Button 
-            color = "rgba(52, 52, 52, 0.7)"
-            title = "Вход"
-            onPress = {this.onLogInButtonPress}
-          />
+        <TextInput
+            style={styles.textBox}
+            onChangeText={(passInput) => this.setState({passTwo:passInput})}
+            secureTextEntry={true}
+            placeholder = "Повторете паролата"
+            placeholderTextColor = "rgba(0, 0, 0, 0.3)"
+            textAlign={'center'}
+            selectionColor={"rgba(0, 0, 0, 0.4)"}
+        />
+        <Text></Text>
           <Button 
             color = "rgba(52, 52, 52, 0.7)"
             title = "регистрация"
             onPress = {this.onRegisterButtonPress}
           />
-        </View>
       </ImageBackground>
     );
   }
