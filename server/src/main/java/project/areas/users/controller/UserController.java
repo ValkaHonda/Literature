@@ -12,11 +12,13 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.ShowUserDTO;
 import project.areas.users.services.RoleService;
 import project.areas.users.services.UserService;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -64,6 +66,10 @@ public class UserController {
     public List<ShowAuthorResultDTO> getAllUsersAuthorsQuizResults(final Principal principal){
         User loggedUser = this.userService.findUserEntityByUserName(principal.getName());
         return this.userService.findUserAuthorResult(loggedUser);
+    }
+    @GetMapping("/rank/biography")
+    public Map<ShowUserDTO,Double> getUsersBiographyRanks(){
+        return this.userService.getUsersBiographyRanks();
     }
 
 }

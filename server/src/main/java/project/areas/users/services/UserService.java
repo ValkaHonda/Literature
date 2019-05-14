@@ -7,8 +7,10 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.ShowUserDTO;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     void registerUser(final UserRegisterForm user, final Role role);
@@ -17,4 +19,5 @@ public interface UserService {
     List<ShowBiographyQuizResultDTO> findUserBiographyQuizResults(final User user);
     List<ShowWorkResultDTO> findUserWorkResults(final User user);
     List<ShowAuthorResultDTO> findUserAuthorResult(final User user);
+    Map<ShowUserDTO,Double> getUsersBiographyRanks();
 }

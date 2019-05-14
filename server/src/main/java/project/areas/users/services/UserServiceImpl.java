@@ -13,11 +13,10 @@ import project.areas.users.entities.Role;
 import project.areas.users.entities.User;
 import project.areas.users.models.bidingModels.UserRegisterForm;
 import project.areas.users.models.bidingModels.UsernameBindingModel;
+import project.areas.users.models.dto.ShowUserDTO;
 import project.areas.users.repositories.UserRepository;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -66,6 +65,36 @@ public class UserServiceImpl implements UserService{
     public List<ShowAuthorResultDTO> findUserAuthorResult(User user) {
         List<AuthorQuizResult> authorResultsEntities = user.getAuthorQuizResults();
         return this.authorEntitiesToDTOS(authorResultsEntities);
+    }
+
+    @Override
+    public Map<ShowUserDTO, Double> getUsersBiographyRanks() {
+        Map<User,Double> rank = new HashMap<>();
+        List<User> users = this.userRepository.findAll();
+        for (User currentUser : users) {
+            List<BiographyQuizResult> quizResults = currentUser.getBiographyQuizResults();
+            Double avgPercent = getAvgBiographyPercent(quizResults);
+            rank.put(currentUser,avgPercent);
+        }
+        return toDTOBiographyMap(rank);
+    }
+
+    private Map<ShowUserDTO, Double> toDTOBiographyMap(Map<User,Double> entityMap){
+        Map<ShowUserDTO, Double> dtoMap = new HashMap<>();
+        for (Map.Entry<User, Double> userDoubleEntry : entityMap.entrySet()) {
+            dtoMap.put(entityToUserDTO(userDoubleEntry.getKey()),userDoubleEntry.getValue());
+        }
+        return dtoMap;
+    }
+    private ShowUserDTO entityToUserDTO(User user){
+        return new ShowUserDTO(user.getId(),user.getEmail(),user.getAvatarURL());
+    }
+    private Double getAvgBiographyPercent(List<BiographyQuizResult> results){
+        double avg = 0;
+        for (BiographyQuizResult result : results) {
+            avg += result.getSuccessPercentage();
+        }
+        return avg/results.size();
     }
     private ShowAuthorResultDTO authorEntityToDTO(final AuthorQuizResult authorQuizResult){
         return new ShowAuthorResultDTO(authorQuizResult.getId(),authorQuizResult.getSuccessPercentage(),
