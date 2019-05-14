@@ -15,6 +15,12 @@ public class WorkQuizResult
     private WorkQuiz workQuiz;
     public WorkQuizResult() {}
 
+    public WorkQuizResult(Double successPercentage, User user, WorkQuiz workQuiz) {
+        this.successPercentage = successPercentage;
+        this.user = user;
+        this.workQuiz = workQuiz;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
