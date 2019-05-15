@@ -87,10 +87,13 @@ export default class HomeScreen extends Component {
           Alert.alert("Няма такъв потребител.");
           return;
         }
-        const time = Date.now();
+        const time = new Date();
         setInterval(()=>{ 
-          const currentTime = Date.now();
-          if(currentTime>(time+180000)){
+          const currentTime = new Date().getTime();
+          const currentTimeValue = Number(currentTime);
+          const loginTime = time.getTime();
+          const loginTimeValue = Number(loginTime);
+          if(currentTimeValue>(loginTimeValue+180000)){
             this.props.navigation.navigate('Home'); 
           }
         }, 5000);

@@ -133,7 +133,8 @@ const styles = StyleSheet.create({
   },
   authorName: 
   {
-    textAlign: 'center'
+    textAlign: 'center',
+    fontSize: 11,
   },
   MainScreenBox: {
     flex:1,
