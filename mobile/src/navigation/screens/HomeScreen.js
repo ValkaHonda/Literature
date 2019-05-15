@@ -29,8 +29,8 @@ export default class HomeScreen extends Component {
 
   constructor(props){
     super(props);
-    
   }
+  
 
   componentWillMount(){
     this._retrieveData('save').then(
@@ -87,7 +87,13 @@ export default class HomeScreen extends Component {
           Alert.alert("Няма такъв потребител.");
           return;
         }
-        setTimeout(() => {this.props.navigation.navigate('Home');}, 5000); // logout after 5 seconds
+        const time = Date.now();
+        setInterval(()=>{ 
+          const currentTime = Date.now();
+          if(currentTime>(time+180000)){
+            this.props.navigation.navigate('Home'); 
+          }
+        }, 5000);
         this.setState({ token: response.token });
         StoreGlobal({
           type:'set', 
