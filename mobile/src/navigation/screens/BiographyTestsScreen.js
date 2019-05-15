@@ -29,7 +29,11 @@ constructor(props)
   getAllBiographyTests().then(
     (response) => {
       this.setState({
-        array: response,
+        array: response.map((element)=>{
+          return {
+            key: element.id,
+          };
+        }),
         loading: false
       })
     }
@@ -42,11 +46,11 @@ renderArray = (array) =>
   return array.map(
     (element, index) => {
       return (
-        <Button
+        <Button key={element.key}
           title="Първи тест"
           onPress={() => this.props.navigation.push('FirstBiographyTest', 
           {
-            biographyTestID: element.id
+            biographyTestID: element.key //element.id /// id is now key
           }
           )}
         />
