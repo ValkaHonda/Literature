@@ -26,6 +26,7 @@ import FirstWorkTestScreen from './screens/FirstWorkTestScreen';
 import FirstAuthorTestScreen from './screens/FirstAuthorTestScreen';
 import UserScreen from './screens/UserScreen';
 import RegisterScreen from './screens/RegisterScreen';
+import YourScore from './screens/yourScore';
 
 
 
@@ -56,6 +57,7 @@ const RootStack = createStackNavigator(
     FirstAuthorTest: FirstAuthorTestScreen,
     User: UserScreen,
     Register: RegisterScreen,
+    Score: YourScore
   },
   { 
     headerMode: 'none' 

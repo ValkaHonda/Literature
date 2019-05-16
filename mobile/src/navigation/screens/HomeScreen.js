@@ -87,7 +87,7 @@ export default class HomeScreen extends Component {
           Alert.alert("Няма такъв потребител.");
           return;
         }
-        const time = new Date();
+        /* const time = new Date();
         setInterval(()=>{ 
           const currentTime = new Date().getTime();
           const currentTimeValue = Number(currentTime);
@@ -96,7 +96,7 @@ export default class HomeScreen extends Component {
           if(currentTimeValue>(loginTimeValue+180000)){
             this.props.navigation.navigate('Home'); 
           }
-        }, 5000);
+        }, 5000);*/
         this.setState({ token: response.token });
         StoreGlobal({
           type:'set', 
