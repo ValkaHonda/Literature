@@ -40,7 +40,47 @@ export default class AuthorScreen extends React.Component {
       const spokenText = await SpeechAndroid.startSpeech("Моля, говорете", SpeechAndroid.BULGARIAN);
       const command = spokenText.toString().toLowerCase();
       //Alert.alert(JSON.stringify(spokenText));
-      this.setState({search: command});
+      if(command.startsWith('отвори')){
+        const words = command.split(' ');
+        const searchedAuthorName = words[1]+" "+words[2];
+        for (let i = 0; i < this.state.arr.length; i++) {
+          const author = this.state.arr[i];
+          const names = author.firstName.toLowerCase() + " " +author.lastName.toLowerCase();
+          //console.log(names + " --------" + searchedAuthorName);
+          if(names === searchedAuthorName){
+            this.props.navigation.push('Author',{
+              key: author.key,
+              firstName: author.firstName, 
+              lastName: author.lastName,
+              biography: author.biography,
+              URL: author.url}
+            );
+            break;
+          } 
+        }
+      }else if(command.startsWith('отиди на')){
+        const words = command.split(' ');
+        const searchedAuthorName = words[2]+" "+words[3];
+        for (let i = 0; i < this.state.arr.length; i++) {
+          const author = this.state.arr[i];
+          const names = author.firstName.toLowerCase() + " " +author.lastName.toLowerCase();
+          //console.log(names + " --------" + searchedAuthorName);
+          if(names === searchedAuthorName){
+            this.props.navigation.push('Author',{
+              key: author.key,
+              firstName: author.firstName, 
+              lastName: author.lastName,
+              biography: author.biography,
+              URL: author.url}
+            );
+            break;
+          } 
+        }
+      } else {
+        console.log('Не трябва да влиза тук');
+        this.setState({search: command});
+      }
+      
   }catch(error){
     Alert.alert(JSON.stringify(error));
       /*switch(error){
