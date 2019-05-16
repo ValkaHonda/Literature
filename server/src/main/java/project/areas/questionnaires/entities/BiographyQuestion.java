@@ -16,6 +16,7 @@ public class BiographyQuestion {
     private Author author;
     private BiographyQuiz biographyQuiz;
     private AuthorQuiz authorQuiz;
+    private String img;
 
     public BiographyQuestion(){ }
 
@@ -100,5 +101,14 @@ public class BiographyQuestion {
 
     public void setAuthorQuiz(AuthorQuiz authorQuiz) {
         this.authorQuiz = authorQuiz;
+    }
+
+    @Column(name = "img")
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }

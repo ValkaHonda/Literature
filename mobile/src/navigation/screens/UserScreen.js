@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, Text, View, Button, ImageBackground} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {getUserInfo} from '../../services/HTTPService';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 

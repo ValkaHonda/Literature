@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {AppRegistry, ImageBackground, ActivityIndicator, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
+import {AppRegistry, TouchableWithoutFeedback, ImageBackground, ActivityIndicator, TouchableOpacity, Alert, StyleSheet, Text, View, Button, FlatList, Dimensions, Image} from 'react-native';
 import {getAuthors} from '../../services/HTTPService';
 import { SearchBar } from 'react-native-elements';
+import SpeechAndroid from 'react-native-android-voice';
 
 
 
@@ -33,18 +34,68 @@ export default class AuthorScreen extends React.Component {
       });
     }).catch((err)=>Alert.alert(JSON.stringify(err)));
   }
-  static navigationOptions = {
-    title: 'Автори',
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-      alignSelf: 'center', 
-      textAlign:"center",
-      flex:1,
-    },
+  record = async () => {
+    try{
+      //More Locales will be available upon release.
+      const spokenText = await SpeechAndroid.startSpeech("Моля, говорете", SpeechAndroid.BULGARIAN);
+      const command = spokenText.toString().toLowerCase();
+      //Alert.alert(JSON.stringify(spokenText));
+      if(command.startsWith('отвори')){
+        const words = command.split(' ');
+        const searchedAuthorName = words[1]+" "+words[2];
+        for (let i = 0; i < this.state.arr.length; i++) {
+          const author = this.state.arr[i];
+          const names = author.firstName.toLowerCase() + " " +author.lastName.toLowerCase();
+          //console.log(names + " --------" + searchedAuthorName);
+          if(names === searchedAuthorName){
+            this.props.navigation.push('Author',{
+              key: author.key,
+              firstName: author.firstName, 
+              lastName: author.lastName,
+              biography: author.biography,
+              URL: author.url}
+            );
+            break;
+          } 
+        }
+      }else if(command.startsWith('отиди на')){
+        const words = command.split(' ');
+        const searchedAuthorName = words[2]+" "+words[3];
+        for (let i = 0; i < this.state.arr.length; i++) {
+          const author = this.state.arr[i];
+          const names = author.firstName.toLowerCase() + " " +author.lastName.toLowerCase();
+          //console.log(names + " --------" + searchedAuthorName);
+          if(names === searchedAuthorName){
+            this.props.navigation.push('Author',{
+              key: author.key,
+              firstName: author.firstName, 
+              lastName: author.lastName,
+              biography: author.biography,
+              URL: author.url}
+            );
+            break;
+          } 
+        }
+      } else {
+        console.log('Не трябва да влиза тук');
+        this.setState({search: command});
+      }
+      
+  }catch(error){
+    Alert.alert(JSON.stringify(error));
+      /*switch(error){
+          case SpeechAndroid.E_VOICE_CANCELLED:
+              ToastAndroid.show("Voice Recognizer cancelled" , ToastAndroid.LONG);
+              break;
+          case SpeechAndroid.E_NO_MATCH:
+              ToastAndroid.show("No match for what you said" , ToastAndroid.LONG);
+              break;
+          case SpeechAndroid.E_SERVER_ERROR:
+              ToastAndroid.show("Google Server Error" , ToastAndroid.LONG);
+              break;
+          /*And more errors that will be documented on Docs upon release*/
+      }
+  
   };
   renderItem = ({ item, index }) => {
     if (item.empty === true) {
@@ -53,6 +104,7 @@ export default class AuthorScreen extends React.Component {
     return (
         <TouchableOpacity 
         style={{margin: 10}}
+        onLongPress={()=>this.record()}
         onPress={() => {
           this.props.navigation.push('Author',{
             key: item.key,
@@ -84,6 +136,7 @@ export default class AuthorScreen extends React.Component {
       );
     } else {
       return (
+      <TouchableWithoutFeedback onLongPress={()=>this.record()}>
         <ImageBackground 
         source={require('../../images/Moleskin.png')}
         style={[{width: '100%', height: '100%'}, styles.container]}>
@@ -92,6 +145,7 @@ export default class AuthorScreen extends React.Component {
           onChangeText={this.updateSearch}
           value={search}
         />
+          
             <FlatList
               data={formatData(this.state.arr.filter(
                 (element)=>(element.firstName+" "+element.lastName).toLowerCase().includes(this.state.search.toLowerCase())
@@ -99,8 +153,9 @@ export default class AuthorScreen extends React.Component {
               style={[styles.MainScreenBox]}
               renderItem={this.renderItem}
               numColumns={numColumns}
-            />
-        </ImageBackground>
+            />  
+          </ImageBackground>
+        </TouchableWithoutFeedback>
       );  
     }
     

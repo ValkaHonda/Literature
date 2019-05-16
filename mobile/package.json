@@ -11,6 +11,8 @@
     "@react-native-community/async-storage": "^1.4.0",
     "react": "16.8.3",
     "react-native": "0.59.2",
+    "react-native-android-text-to-speech": "^1.2.3",
+    "react-native-android-voice": "^0.6.0",
     "react-native-elements": "^1.1.0",
     "react-native-gesture-handler": "^1.1.0",
     "react-native-tts": "^3.0.0",

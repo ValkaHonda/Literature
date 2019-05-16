@@ -46,7 +46,7 @@ export default class YourScore extends Component {
           color= {(this.state.chosenAnswer === 1)?'red':'green'}//"#841584" 
           title='Home'
           onPress={() => {
-            this.props.navigation.navigate('Home');
+            this.props.navigation.navigate('Details');
           }}
       />
         </View>

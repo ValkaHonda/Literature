@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, ScrollView, ImageBackground} from 'react-native';
+import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, ScrollView, ImageBackground, TouchableOpacity, Image} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {
   getBiographyQuestionsByQuizID,
@@ -70,6 +70,7 @@ this.setState({
       {
         return {
           key: element.id,
+          img: element.img,
           question: element.question,
           answers: [
             element.rightAnswer, 
@@ -92,6 +93,7 @@ sendRequest = async () => {
   for (let i = 0; i < answersArr.length; i++) {
     answersToSend.push(questions[i].answers[answersArr[i]-1]);
   }
+  console.log(JSON.stringify(answersToSend));
   postBiographyTest({
     answers: answersToSend
   },this.state.id)
@@ -115,10 +117,85 @@ renderAnswers = (questions, questionIndex) =>
   //   this.props.navigation.navigate('Home');
   //   return;
   // }
+
+
+  // Start Start Start Start Start
+  /*
+      <Button
+          color= {(this.state.chosenAnswer === 1)?'red':'green'}//"#841584" 
+          title={currentQuestion.answers[0]}
+          onPress={() => {
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          }}
+      />
+      */ // https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png
+  
   return (
     <View
       style={styles.container}>
-      <Text>{currentQuestion.question}</Text>
+
+      <Image
+          style={{width: 200, height: 200}}
+          source={{uri: currentQuestion.img}}
+        />
+
+      <Text
+        style={{fontSize: 20}}
+      >{currentQuestion.question}</Text>
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
+          }}>
+                
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
+          }}>
+        
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
+          }}>
+        
+        
+      </TouchableOpacity>
+
+
+
+
+
+<TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
+          }}>
+      
+        </TouchableOpacity>
+
       <Button
           color= {(this.state.chosenAnswer === 1)?'red':'green'}//"#841584" 
           title={currentQuestion.answers[0]}
@@ -174,6 +251,7 @@ renderAnswers = (questions, questionIndex) =>
               title={(this.state.currentQuestionIndex < this.state.array.length-1) ? "Следващия въпрос:" : "Изпрати"}
               onPress={() => {
                 if(this.state.currentQuestionIndex > this.state.array.length-2){
+                  
                   this.sendRequest();
                   return;
                 }
@@ -200,4 +278,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+  borders: {
+    borderColor: 'green',
+    borderWidth: 10
+  }
 });
+

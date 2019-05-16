@@ -44,7 +44,7 @@ private final BiographyQuestionRepository biographyQuestionRepository;
     private ShowBiographyQuestionDTO entityToDTO(final BiographyQuestion biographyQuestion){
         return new ShowBiographyQuestionDTO(biographyQuestion.getId(), biographyQuestion.getQuestion(),
                 biographyQuestion.getRightAnswer(), biographyQuestion.getWrongAnswer1(), biographyQuestion.getWrongAnswer2(),
-                biographyQuestion.getWrongAnswer3());
+                biographyQuestion.getWrongAnswer3(), biographyQuestion.getImg());
     }
     private List<ShowBiographyQuestionDTO> entityToDTOList(final List<BiographyQuestion> biographyQuestionEntities){
         List<ShowBiographyQuestionDTO> showBiographyQuestionDTOS = new ArrayList<>();
