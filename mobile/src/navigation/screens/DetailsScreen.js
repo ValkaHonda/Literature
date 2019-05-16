@@ -30,7 +30,12 @@ export default class DetailsScreen extends Component {
       //Alert.alert(JSON.stringify(spokenText));
       if(command === 'автор' || command === 'автори'){
         this.props.navigation.push('Authors')
-      } else {
+      } else if(command === 'тест' || command === 'тестове'){
+        this.props.navigation.push('Tests');
+      } else if(command === 'аз' || command === 'профил'|| command === 'потребител'|| command === 'клиент'){
+        this.props.navigation.push('User');
+      }
+      else {
         Alert.alert('Моля, пробвайте отново');
       }
   }catch(error){
