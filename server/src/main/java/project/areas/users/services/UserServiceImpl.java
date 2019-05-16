@@ -39,6 +39,7 @@ public class UserServiceImpl implements UserService{
         user.setPass(this.bCryptPasswordEncoder.encode(user.getPass()));
         User userEntity = new User(user.getEmail(),user.getPass());
         userEntity.setRoles(new HashSet<>());
+        userEntity.setAvatarURL("https://res.cloudinary.com/literature-image-api/image/upload/v1557332941/Cookie_Monster_va8f0g.jpg");
         userEntity.getRoles().add(role);
         this.userRepository.saveAndFlush(userEntity);
     }

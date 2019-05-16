@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, ScrollView, ImageBackground} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
-import {getBiographyQuestionsByQuizID} from '../../services/HTTPService';
+import {
+  getBiographyQuestionsByQuizID,
+  postBiographyTest,
+} from '../../services/HTTPService';
 /*import {
   Container, Header, Title, Content, Text,
   Button, Icon, Left, Right, Body, Badge,
@@ -30,6 +33,7 @@ export default class FirstBiographyTestScreen extends Component {
     answers: [],
     chosenAnswer: 0,
     currentQuestionIndex: 0,
+    result:-1,
 };
 
   constructor(props){
@@ -76,36 +80,76 @@ this.setState({
             if(el1 < el2) {return -1;}
             if(el1 > el2) {return 1;}
             return 0;
-          })
+          })/*.sort((el1,el2)=>el2-el1)*/
         };
       
       });
   }
+sendRequest = async () => {
+  const answersArr = this.state.answers;
+  const questions = this.state.array;
+  const answersToSend = [];
+  for (let i = 0; i < answersArr.length; i++) {
+    answersToSend.push(questions[i].answers[answersArr[i]-1]);
+  }
+  postBiographyTest({
+    answers: answersToSend
+  },this.state.id)
+    .then((res)=>{
+      console.log(res);
+      this.props.navigation.push('Score',{
+        result:Number(res),
+      });
+    })
+    .catch((err)=>console.log(err));
+};
 
 renderAnswers = (questions, questionIndex) => 
 {
   questionIndex = Number(questionIndex);
-  const currentQuestion = questions[questionIndex];
   
+  
+  const currentQuestion = questions[questionIndex];
+
+  // if(!currentQuestion){
+  //   this.props.navigation.navigate('Home');
+  //   return;
+  // }
   return (
     <View
       style={styles.container}>
       <Text>{currentQuestion.question}</Text>
       <Button
+          color= {(this.state.chosenAnswer === 1)?'red':'green'}//"#841584" 
           title={currentQuestion.answers[0]}
-          onPress={() => this.state.answers.push(1)}
+          onPress={() => {
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          }}
       />
       <Button
+          color={(this.state.chosenAnswer === 2)?'red':'green'}
           title={currentQuestion.answers[1]}
-          onPress={() => this.state.answers.push(2)}
+          onPress={() => {
+            this.state.answers[questionIndex] = 2;
+            this.setState({chosenAnswer:2});
+          }}
       />
       <Button
+          color= {(this.state.chosenAnswer === 3)?'red':'green'}
           title={currentQuestion.answers[2]}
-          onPress={() => this.state.answers.push(3)}
+          onPress={() => {
+            this.state.answers[questionIndex] = 3;
+            this.setState({chosenAnswer:3});
+          }}
       />
       <Button
+          color={(this.state.chosenAnswer === 4)?'red':'green'}
           title={currentQuestion.answers[3]}
-          onPress={() => this.state.answers.push(4)}
+          onPress={() => {
+            this.state.answers[questionIndex] = 4;
+            this.setState({chosenAnswer:4});
+          }}
       />
     </View>
   );
@@ -127,13 +171,19 @@ renderAnswers = (questions, questionIndex) =>
             { this.renderAnswers(this.state.array,this.state.currentQuestionIndex) }
             <Button
               style={{marginTop: 10}}
-              title="Следващия въпрос:"
+              title={(this.state.currentQuestionIndex < this.state.array.length-1) ? "Следващия въпрос:" : "Изпрати"}
               onPress={() => {
-                const newIndex = this.state.currentQuestionIndex+1;
-                this.setState({currentQuestionIndex: newIndex});
-                if(newIndex >= this.state.array.length){
-                  
-                  Alert.alert('Done');
+                if(this.state.currentQuestionIndex > this.state.array.length-2){
+                  this.sendRequest();
+                  return;
+                }
+                if(this.state.answers[this.state.currentQuestionIndex] > 0){
+                  const newIndex = this.state.currentQuestionIndex+1;
+                  this.setState({currentQuestionIndex:0});
+                  this.setState({chosenAnswer:0});
+                  this.setState({currentQuestionIndex: newIndex});
+                } else {
+                  Alert.alert("Choose an answer!")
                 }
               }}
             />    

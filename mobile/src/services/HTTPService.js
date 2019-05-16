@@ -90,3 +90,28 @@ export const login = (state) => {
     }
   }).then((response) => response.json())
 };
+export const register = (state) => {
+  const URL = `https://thawing-eyrie-26509.herokuapp.com`;
+  return fetch(`${URL}/users/sign-up`,{
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(state), // data can be `string` or {object}!
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => response.json())
+};
+export const postBiographyTest = (answers, quizId) => {
+  const token = StoreGlobal({
+    type:'get', 
+    key:'token'
+  });
+  const URL = `https://thawing-eyrie-26509.herokuapp.com`;
+  return fetch(`${URL}/result/biography-quiz/${quizId}`,{
+    method: 'POST', // or 'PUT'
+    body: JSON.stringify(answers), // data can be `string` or {object}!
+    headers:{
+      'Authorization': `Bearer ${token}`, 
+      'Content-Type': 'application/json'
+    }
+  }).then((response) => response.json())
+};
