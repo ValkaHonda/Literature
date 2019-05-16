@@ -3,7 +3,7 @@ import {Alert, StyleSheet, Text, View, Button, ImageBackground, Image, Touchable
 import {StoreGlobal } from '../../../App.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import SpeechAndroid from 'react-native-android-voice';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default class DetailsScreen extends Component {
@@ -21,7 +21,13 @@ export default class DetailsScreen extends Component {
   componentWillMount(){
   
   }
-
+  _storeData = async (key,item) => {
+    try {
+      await AsyncStorage.setItem(key, item);
+    } catch (error) {
+      // Error saving data
+    }
+  };
   record = async () => {
     try{
       //More Locales will be available upon release.
@@ -34,6 +40,9 @@ export default class DetailsScreen extends Component {
         this.props.navigation.push('Tests');
       } else if(command === 'аз' || command === 'профил'|| command === 'потребител'|| command === 'клиент'){
         this.props.navigation.push('User');
+      } else if(command === 'изход' || command === 'разкарай ме'|| command === 'махни ме от тук'|| command === 'излизане'){
+        this.props.navigation.navigate('Home');
+        this._storeData('save','true');
       }
       else {
         Alert.alert('Моля, пробвайте отново');
