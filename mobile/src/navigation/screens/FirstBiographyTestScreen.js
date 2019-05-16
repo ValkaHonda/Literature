@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, ScrollView, ImageBackground} from 'react-native';
+import {Alert, ActivityIndicator, StyleSheet, Text, View, Button, ScrollView, ImageBackground, TouchableOpacity, Image} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import {
   getBiographyQuestionsByQuizID,
@@ -119,6 +119,135 @@ renderAnswers = (questions, questionIndex) =>
     <View
       style={styles.container}>
       <Text>{currentQuestion.question}</Text>
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          Alert.alert("Button.");
+          }}>
+        <ImageBackground
+          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
+          style={{
+            height: 60,
+            width: 100,
+            position: 'relative', // because it's parent
+            top: 2,
+            left: 2
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: 'white',
+              position: 'absolute', // child
+              //bottom: 30, // position where you want
+              //left: 30,
+              fontSize: 25
+            }}
+          >
+            Hello World
+          </Text>
+        </ImageBackground>
+        </TouchableOpacity>
+
+
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          Alert.alert("Button.");
+          }}>
+      
+  <ImageBackground
+          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
+          style={[{
+            height: 60,
+            width: 100,
+            position: 'relative', 
+            top: 2,
+            left: 2
+          }, styles.borders]}
+        >
+        
+        
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: 'white',
+              position: 'absolute', // child
+              //bottom: 30, // position where you want
+              //left: 30,
+              fontSize: 25
+            }}
+          >
+            Hello World
+          </Text>
+        </ImageBackground>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          Alert.alert("Button.");
+          }}>
+        <ImageBackground
+          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
+          style={{
+            height: 60,
+            width: 100,
+            position: 'relative', // because it's parent
+            top: 2,
+            left: 2
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: 'white',
+              position: 'absolute', // child
+              //bottom: 30, // position where you want
+              //left: 30,
+              fontSize: 25
+            }}
+          >
+            Hello World
+          </Text>
+        </ImageBackground>
+        </TouchableOpacity>
+
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          Alert.alert("Button.");
+          }}>
+        <ImageBackground
+          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
+          style={{
+            height: 60,
+            width: 100,
+            position: 'relative', // because it's parent
+            top: 2,
+            left: 2
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: 'white',
+              position: 'absolute', // child
+              //bottom: 30, // position where you want
+              //left: 30,
+              fontSize: 25
+            }}
+          >
+            Hello World
+          </Text>
+        </ImageBackground>
+        </TouchableOpacity>
+
+
       <Button
           color= {(this.state.chosenAnswer === 1)?'red':'green'}//"#841584" 
           title={currentQuestion.answers[0]}
@@ -200,4 +329,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
+  borders: {
+    borderColor: 'green',
+    borderWidth: 10
+  }
 });
+
