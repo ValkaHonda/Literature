@@ -33,13 +33,22 @@ public class BiographyResultServiceImpl implements BiographyResultService{
 
         for (int i = 0; i < questions.size()-1; i++) {
             for (int j = 0; j < questions.size() - 1; j++) {
-                BiographyQuestion q1 = questions.get(i);
+                /*BiographyQuestion q1 = questions.get(i);
                 BiographyQuestion q2 = questions.get(i+1);
 
                 if(q1.getId() > q2.getId()){
                     questions.set(i,q2);
                     questions.set(i+1,q1);
+                }*/
+
+
+                if(questions.get(i).getId() > questions.get(i+1).getId()){
+                    BiographyQuestion temp = questions.get(i);
+                    questions.set(i,questions.get(i+1));
+                    questions.set(i+1,temp);
                 }
+
+
             }
         }
         
