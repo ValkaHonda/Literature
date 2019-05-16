@@ -31,7 +31,11 @@ public class BiographyResultServiceImpl implements BiographyResultService{
         double counter = 0;
         List<String> answerQuestions = answerQuestionsDTO.getAnswers();
         for (int i = 0; i < Math.min(answerQuestions.size(),questions.size()); i++) {
-            if(questions.get(i).getRightAnswer().equals(answerQuestions.get(i))){
+
+            String entityAnwer = questions.get(i).getRightAnswer();
+            String dtoAnwer = answerQuestions.get(i);
+            System.out.println(entityAnwer + " <---> " + dtoAnwer);
+            if(entityAnwer.equals(dtoAnwer)){
                 counter++;
             }
         }
@@ -39,8 +43,6 @@ public class BiographyResultServiceImpl implements BiographyResultService{
         result *= 100;
         BiographyQuizResult newResult = new BiographyQuizResult(result, user, quiz);
         this.biographyQuizResultRepository.saveAndFlush(newResult);
-        System.out.println(answerQuestionsDTO.getAnswers());
-        System.out.println(questions);
         return result;
     }
 }
