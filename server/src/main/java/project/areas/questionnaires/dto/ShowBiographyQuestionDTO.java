@@ -8,6 +8,7 @@ public class ShowBiographyQuestionDTO {
     private String wrongAnswer1;
     private String wrongAnswer2;
     private String wrongAnswer3;
+    private String img;
 
     public ShowBiographyQuestionDTO() {
     }
@@ -19,6 +20,16 @@ public class ShowBiographyQuestionDTO {
         this.wrongAnswer1 = wrongAnswer1;
         this.wrongAnswer2 = wrongAnswer2;
         this.wrongAnswer3 = wrongAnswer3;
+    }
+
+    public ShowBiographyQuestionDTO(Integer id, String question, String rightAnswer, String wrongAnswer1, String wrongAnswer2, String wrongAnswer3, String img) {
+        this.id = id;
+        this.question = question;
+        this.rightAnswer = rightAnswer;
+        this.wrongAnswer1 = wrongAnswer1;
+        this.wrongAnswer2 = wrongAnswer2;
+        this.wrongAnswer3 = wrongAnswer3;
+        this.img = img;
     }
 
     public Integer getId() {
@@ -67,6 +78,14 @@ public class ShowBiographyQuestionDTO {
 
     public void setWrongAnswer3(String wrongAnswer3) {
         this.wrongAnswer3 = wrongAnswer3;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
     }
 }
 
