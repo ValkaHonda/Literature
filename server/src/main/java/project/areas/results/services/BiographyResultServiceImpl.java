@@ -43,10 +43,8 @@ public class BiographyResultServiceImpl implements BiographyResultService{
         }
         
         for (int i = 0; i < Math.min(answerQuestions.size(),questions.size()); i++) {
-
             String entityAnwer = questions.get(i).getRightAnswer();
             String dtoAnwer = answerQuestions.get(i);
-            System.out.println(entityAnwer + "with id: " + questions.get(i).getId() + " <---> " + dtoAnwer);
             if(entityAnwer.equals(dtoAnwer)){
                 counter++;
             }
