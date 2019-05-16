@@ -39,11 +39,13 @@ export default class BiographyScreen extends Component {
       <ImageBackground 
         source={require('../../images/Moleskin.png')}
         style={[{width: '100%', height: '100%'}, styles.container]}>
-        <Text style={{fontWeight: 'bold'}}>
+        <Text style={{fontWeight: 'bold', fontSize: 40}}>
           {this.state.firstName.toString()+" "+this.state.lastName.toString()}
         </Text>
         <ScrollView>
-        <Text>{this.state.biography.toString()}</Text>
+        <Text style={{fontSize: 20}}
+        
+        >{this.state.biography.toString()}</Text>
         </ScrollView>
       </ImageBackground>
     );

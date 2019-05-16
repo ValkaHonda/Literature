@@ -152,29 +152,7 @@ renderAnswers = (questions, questionIndex) =>
             this.setState({chosenAnswer:1});
           
           }}>
-        <ImageBackground
-          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
-          style={[{
-            height: 60,
-            width: 100,
-            position: 'relative', 
-            top: 2,
-            left: 2
-          }]}
-        >
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: 'white',
-              position: 'absolute', // child
-              //bottom: 30, // position where you want
-              //left: 30,
-              fontSize: 25
-            }}
-          >
-            Hello World
-          </Text>
-        </ImageBackground>
+                
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -186,29 +164,7 @@ renderAnswers = (questions, questionIndex) =>
             this.setState({chosenAnswer:1});
           
           }}>
-        <ImageBackground
-          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
-          style={[{
-            height: 60,
-            width: 100,
-            position: 'relative', 
-            top: 2,
-            left: 2
-          }]}
-        >
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: 'white',
-              position: 'absolute', // child
-              //bottom: 30, // position where you want
-              //left: 30,
-              fontSize: 25
-            }}
-          >
-            Hello World
-          </Text>
-        </ImageBackground>
+        
         </TouchableOpacity>
 
         <TouchableOpacity 
@@ -220,30 +176,14 @@ renderAnswers = (questions, questionIndex) =>
             this.setState({chosenAnswer:1});
           
           }}>
-        <ImageBackground
-          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
-          style={[{
-            height: 60,
-            width: 100,
-            position: 'relative', 
-            top: 2,
-            left: 2
-          }]}
-        >
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: 'white',
-              position: 'absolute', // child
-              //bottom: 30, // position where you want
-              //left: 30,
-              fontSize: 25
-            }}
-          >
-            Hello World
-          </Text>
-        </ImageBackground>
-        </TouchableOpacity>
+        
+        
+      </TouchableOpacity>
+
+
+
+
+
 <TouchableOpacity 
         style={{margin: 10}}
         onLongPress={()=>this.record()}
@@ -253,29 +193,7 @@ renderAnswers = (questions, questionIndex) =>
             this.setState({chosenAnswer:1});
           
           }}>
-        <ImageBackground
-          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
-          style={[{
-            height: 60,
-            width: 100,
-            position: 'relative', 
-            top: 2,
-            left: 2
-          }]}
-        >
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: 'white',
-              position: 'absolute', // child
-              //bottom: 30, // position where you want
-              //left: 30,
-              fontSize: 25
-            }}
-          >
-            Hello World
-          </Text>
-        </ImageBackground>
+      
         </TouchableOpacity>
 
       <Button
