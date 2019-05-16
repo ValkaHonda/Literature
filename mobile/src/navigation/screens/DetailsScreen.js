@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Alert, StyleSheet, Text, View, Button, ImageBackground, Image} from 'react-native';
 import {StoreGlobal } from '../../../App.js';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import AndroidTextToSpeech from 'react-native-tts';
+
 
 
 export default class DetailsScreen extends Component {
@@ -17,8 +19,8 @@ export default class DetailsScreen extends Component {
   };
 
   componentWillMount(){
-    }
-
+  
+  }
 
   render() {
     return (
@@ -33,6 +35,13 @@ export default class DetailsScreen extends Component {
         
         <View style={{flexDirection:'row'}}>
 
+        <Button
+          color="green"
+          title="test sound"
+          onPress={() => {
+            
+          }}
+      />
 
         <TouchableOpacity onPress={() => {
           this.props.navigation.push('Authors')}}>
