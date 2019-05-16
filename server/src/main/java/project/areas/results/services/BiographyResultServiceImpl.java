@@ -35,6 +35,7 @@ public class BiographyResultServiceImpl implements BiographyResultService{
             for (int j = 0; j < questions.size() - 1; j++) {
                 BiographyQuestion q1 = questions.get(i);
                 BiographyQuestion q2 = questions.get(i+1);
+
                 if(q1.getId() > q2.getId()){
                     questions.set(i,q2);
                     questions.set(i+1,q1);
@@ -45,6 +46,7 @@ public class BiographyResultServiceImpl implements BiographyResultService{
         for (int i = 0; i < Math.min(answerQuestions.size(),questions.size()); i++) {
             String entityAnwer = questions.get(i).getRightAnswer();
             String dtoAnwer = answerQuestions.get(i);
+            System.out.println(entityAnwer + " entity--->dto " + dtoAnwer);
             if(entityAnwer.equals(dtoAnwer)){
                 counter++;
             }

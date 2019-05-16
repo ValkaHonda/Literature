@@ -70,6 +70,7 @@ this.setState({
       {
         return {
           key: element.id,
+          img: element.img,
           question: element.question,
           answers: [
             element.rightAnswer, 
@@ -92,6 +93,7 @@ sendRequest = async () => {
   for (let i = 0; i < answersArr.length; i++) {
     answersToSend.push(questions[i].answers[answersArr[i]-1]);
   }
+  console.log(JSON.stringify(answersToSend));
   postBiographyTest({
     answers: answersToSend
   },this.state.id)
@@ -115,91 +117,50 @@ renderAnswers = (questions, questionIndex) =>
   //   this.props.navigation.navigate('Home');
   //   return;
   // }
+
+
+  // Start Start Start Start Start
+  /*
+      <Button
+          color= {(this.state.chosenAnswer === 1)?'red':'green'}//"#841584" 
+          title={currentQuestion.answers[0]}
+          onPress={() => {
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          }}
+      />
+      */ // https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png
+  
   return (
     <View
       style={styles.container}>
-      <Text>{currentQuestion.question}</Text>
+
+      <Image
+          style={{width: 200, height: 200}}
+          source={{uri: currentQuestion.img}}
+        />
+
+      <Text
+        style={{fontSize: 20}}
+      >{currentQuestion.question}</Text>
         <TouchableOpacity 
         style={{margin: 10}}
         onLongPress={()=>this.record()}
         onPress={() => {
-          Alert.alert("Button.");
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
           }}>
         <ImageBackground
-          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
-          style={{
-            height: 60,
-            width: 100,
-            position: 'relative', // because it's parent
-            top: 2,
-            left: 2
-          }}
-        >
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: 'white',
-              position: 'absolute', // child
-              //bottom: 30, // position where you want
-              //left: 30,
-              fontSize: 25
-            }}
-          >
-            Hello World
-          </Text>
-        </ImageBackground>
-        </TouchableOpacity>
-
-
-        <TouchableOpacity 
-        style={{margin: 10}}
-        onLongPress={()=>this.record()}
-        onPress={() => {
-          Alert.alert("Button.");
-          }}>
-      
-  <ImageBackground
-          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
+          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
           style={[{
             height: 60,
             width: 100,
             position: 'relative', 
             top: 2,
             left: 2
-          }, styles.borders]}
-        >
-        
-        
-          <Text
-            style={{
-              fontWeight: 'bold',
-              color: 'white',
-              position: 'absolute', // child
-              //bottom: 30, // position where you want
-              //left: 30,
-              fontSize: 25
-            }}
-          >
-            Hello World
-          </Text>
-        </ImageBackground>
-        </TouchableOpacity>
-
-        <TouchableOpacity 
-        style={{margin: 10}}
-        onLongPress={()=>this.record()}
-        onPress={() => {
-          Alert.alert("Button.");
-          }}>
-        <ImageBackground
-          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
-          style={{
-            height: 60,
-            width: 100,
-            position: 'relative', // because it's parent
-            top: 2,
-            left: 2
-          }}
+          }]}
         >
           <Text
             style={{
@@ -220,17 +181,20 @@ renderAnswers = (questions, questionIndex) =>
         style={{margin: 10}}
         onLongPress={()=>this.record()}
         onPress={() => {
-          Alert.alert("Button.");
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
           }}>
         <ImageBackground
-          source={{ uri: "https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png"}}
-          style={{
+          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
+          style={[{
             height: 60,
             width: 100,
-            position: 'relative', // because it's parent
+            position: 'relative', 
             top: 2,
             left: 2
-          }}
+          }]}
         >
           <Text
             style={{
@@ -247,6 +211,72 @@ renderAnswers = (questions, questionIndex) =>
         </ImageBackground>
         </TouchableOpacity>
 
+        <TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
+          }}>
+        <ImageBackground
+          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
+          style={[{
+            height: 60,
+            width: 100,
+            position: 'relative', 
+            top: 2,
+            left: 2
+          }]}
+        >
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: 'white',
+              position: 'absolute', // child
+              //bottom: 30, // position where you want
+              //left: 30,
+              fontSize: 25
+            }}
+          >
+            Hello World
+          </Text>
+        </ImageBackground>
+        </TouchableOpacity>
+<TouchableOpacity 
+        style={{margin: 10}}
+        onLongPress={()=>this.record()}
+        onPress={() => {
+          
+            this.state.answers[questionIndex] = 1;
+            this.setState({chosenAnswer:1});
+          
+          }}>
+        <ImageBackground
+          source={{ uri: (this.state.chosenAnswer === 1)?'https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/Flag_of_Libya_%281977%E2%80%932011%29.svg/300px-Flag_of_Libya_%281977%E2%80%932011%29.svg.png':'https://res.cloudinary.com/literature-image-api/image/upload/v1557985505/literature/Button_ugixfm.png'}}
+          style={[{
+            height: 60,
+            width: 100,
+            position: 'relative', 
+            top: 2,
+            left: 2
+          }]}
+        >
+          <Text
+            style={{
+              fontWeight: 'bold',
+              color: 'white',
+              position: 'absolute', // child
+              //bottom: 30, // position where you want
+              //left: 30,
+              fontSize: 25
+            }}
+          >
+            Hello World
+          </Text>
+        </ImageBackground>
+        </TouchableOpacity>
 
       <Button
           color= {(this.state.chosenAnswer === 1)?'red':'green'}//"#841584" 
@@ -303,6 +333,7 @@ renderAnswers = (questions, questionIndex) =>
               title={(this.state.currentQuestionIndex < this.state.array.length-1) ? "Следващия въпрос:" : "Изпрати"}
               onPress={() => {
                 if(this.state.currentQuestionIndex > this.state.array.length-2){
+                  
                   this.sendRequest();
                   return;
                 }
