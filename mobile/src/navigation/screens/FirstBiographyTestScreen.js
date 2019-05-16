@@ -81,7 +81,7 @@ this.setState({
             if(el1 < el2) {return -1;}
             if(el1 > el2) {return 1;}
             return 0;
-          })/*.sort((el1,el2)=>el2-el1)*/
+          })
         };
       
       });
