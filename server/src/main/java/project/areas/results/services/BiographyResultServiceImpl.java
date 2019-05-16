@@ -39,6 +39,8 @@ public class BiographyResultServiceImpl implements BiographyResultService{
         result *= 100;
         BiographyQuizResult newResult = new BiographyQuizResult(result, user, quiz);
         this.biographyQuizResultRepository.saveAndFlush(newResult);
+        System.out.println(answerQuestionsDTO.getAnswers());
+        System.out.println(questions);
         return result;
     }
 }
