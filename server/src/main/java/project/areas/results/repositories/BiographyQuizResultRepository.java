@@ -5,4 +5,5 @@ import project.areas.results.entities.BiographyQuizResult;
 
 
 public interface BiographyQuizResultRepository extends JpaRepository<BiographyQuizResult,Integer> {
+
 }

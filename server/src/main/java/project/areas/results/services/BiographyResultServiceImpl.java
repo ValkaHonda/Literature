@@ -30,11 +30,23 @@ public class BiographyResultServiceImpl implements BiographyResultService{
                            ) {
         double counter = 0;
         List<String> answerQuestions = answerQuestionsDTO.getAnswers();
+
+        for (int i = 0; i < questions.size()-1; i++) {
+            for (int j = 0; j < questions.size() - 1; j++) {
+                BiographyQuestion q1 = questions.get(i);
+                BiographyQuestion q2 = questions.get(i+1);
+                if(q1.getId() > q2.getId()){
+                    questions.set(i,q2);
+                    questions.set(i+1,q1);
+                }
+            }
+        }
+        
         for (int i = 0; i < Math.min(answerQuestions.size(),questions.size()); i++) {
 
             String entityAnwer = questions.get(i).getRightAnswer();
             String dtoAnwer = answerQuestions.get(i);
-            System.out.println(entityAnwer + " <---> " + dtoAnwer);
+            System.out.println(entityAnwer + "with id: " + questions.get(i).getId() + " <---> " + dtoAnwer);
             if(entityAnwer.equals(dtoAnwer)){
                 counter++;
             }
